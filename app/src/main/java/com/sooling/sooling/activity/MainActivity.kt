@@ -1,7 +1,8 @@
-package com.sooling.sooling
+package com.sooling.sooling.activity
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.sooling.sooling.R
 
 class MainActivity : AppCompatActivity() {
 
