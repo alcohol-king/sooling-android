@@ -20,6 +20,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.AddCapacityActivity" />
+        <activity android:name=".activity.CalendarActivity" />
+        <activity android:name=".activity.WikiActivity" />
+        <activity android:name=".activity.SettingActivity" />
     </application>
 
 </manifest>
