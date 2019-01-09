@@ -1,16 +1,31 @@
-package com.sooling.sooling.activity
+package com.sooling.sooling.activity.main
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.sooling.sooling.R
+import com.sooling.sooling.activity.AddCapacityActivity
+import com.sooling.sooling.activity.CalendarActivity
+import com.sooling.sooling.activity.SettingActivity
+import com.sooling.sooling.activity.WikiActivity
+import com.sooling.sooling.adapter.CardListAdapter
+import com.sooling.sooling.model.DrinkCard
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.startActivity
 
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
+    lateinit var adapter: CardListAdapter
+    var cardList = listOf<DrinkCard>(
+            DrinkCard("beer", "2000cc까지는 즐기면서"),
+            DrinkCard("soju", "2000cc까지는 즐기면서"),
+            DrinkCard("wine", "2000cc까지는 즐기면서"),
+            DrinkCard("makgeolli", "2000cc까지는 즐기면서")
+    )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -23,6 +38,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 .load(R.drawable.test)
                 .apply(RequestOptions().circleCrop())
                 .into(iv_main_profile)
+
+        adapter = CardListAdapter(this, cardList)
+        rv_main_intro.adapter = adapter
+        rv_main_intro.layoutManager = LinearLayoutManager(
+                this, LinearLayoutManager.HORIZONTAL, false
+        )
 
         btn_main_capacity.setOnClickListener(this)
         btn_main_calendar.setOnClickListener(this)

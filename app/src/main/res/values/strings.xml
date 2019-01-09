@@ -10,11 +10,14 @@
     <string name="all_soju">소주</string>
     <string name="all_beer">맥주</string>
     <string name="all_wine">와인</string>
+    <string name="all_makgeolli">막걸리</string>
 
     <string name="main_title">Yellow Card</string>
     <string name="main_msg1">내가 가장 좋아하는 </string>
     <string name="main_msg2">잔까지는 깔끔하게</string>
     <string name="main_msg3">마실 수 있어요.</string>
+    <string name="main_msg4">술은 잘 못마시지만,</string>
+    <string name="main_msg5">함께 즐길 수 있어요.</string>
 </resources>
 
 
