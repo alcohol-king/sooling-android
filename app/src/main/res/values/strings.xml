@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Sooling</string>
+    <string name="kakao_app_key">a879fa1e1d92450279113db589d86fb3</string>
+
 
     <string name="all_setting">환경설정</string>
     <string name="all_add_capacity">주량등록</string>
@@ -14,3 +16,5 @@
     <string name="main_msg2">잔까지는 깔끔하게</string>
     <string name="main_msg3">마실 수 있어요.</string>
 </resources>
+
+
