@@ -8,4 +8,5 @@
     <color name="colorSoju">#7aec50</color>
     <color name="colorWine">#fb7ac2</color>
     <color name="colorMakgeolli">#75d1f8</color>
+    <color name="colorBtnGray">#eeeeee</color>
 </resources>
