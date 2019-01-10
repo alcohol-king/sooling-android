@@ -3,16 +3,18 @@ package com.sooling.sooling.activity.main
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.LinearSnapHelper
 import android.view.View
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.sooling.sooling.R
-import com.sooling.sooling.activity.add_drink.AddHistoryActivity
 import com.sooling.sooling.activity.CalendarActivity
 import com.sooling.sooling.activity.SettingActivity
 import com.sooling.sooling.activity.WikiActivity
+import com.sooling.sooling.activity.add_drink.AddHistoryActivity
 import com.sooling.sooling.adapter.CardListAdapter
 import com.sooling.sooling.model.DrinkCard
+import com.sooling.sooling.util.RecyclerItemClickListener
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.startActivity
 
@@ -43,6 +45,19 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         rv_main_intro.adapter = adapter
         rv_main_intro.layoutManager = LinearLayoutManager(
                 this, LinearLayoutManager.HORIZONTAL, false
+        )
+
+        val snapHelper = LinearSnapHelper()
+        snapHelper.attachToRecyclerView(rv_main_intro)
+
+        rv_main_intro.onFlingListener = snapHelper
+        rv_main_intro.addOnItemTouchListener(
+                RecyclerItemClickListener(applicationContext, rv_main_intro,
+                        object : RecyclerItemClickListener.OnItemClickListener {
+                            override fun onItemClick(view: View, position: Int) {
+                                rv_main_intro.smoothScrollToPosition(position)
+                            }
+                        })
         )
 
         btn_main_capacity.setOnClickListener(this)
