@@ -7,7 +7,7 @@ import android.view.View
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.sooling.sooling.R
-import com.sooling.sooling.activity.AddCapacityActivity
+import com.sooling.sooling.activity.add_drink.AddHistoryActivity
 import com.sooling.sooling.activity.CalendarActivity
 import com.sooling.sooling.activity.SettingActivity
 import com.sooling.sooling.activity.WikiActivity
@@ -20,10 +20,10 @@ import org.jetbrains.anko.startActivity
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var adapter: CardListAdapter
     var cardList = listOf<DrinkCard>(
-            DrinkCard("beer", "2000cc까지는 즐기면서"),
-            DrinkCard("soju", "2000cc까지는 즐기면서"),
-            DrinkCard("wine", "2000cc까지는 즐기면서"),
-            DrinkCard("makgeolli", "2000cc까지는 즐기면서")
+            DrinkCard("BEER", "2000cc까지는 즐기면서"),
+            DrinkCard("SOJU", "2000cc까지는 즐기면서"),
+            DrinkCard("WINE", "2000cc까지는 즐기면서"),
+            DrinkCard("MAKGEOLLI", "2000cc까지는 즐기면서")
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun initView() {
         Glide.with(applicationContext)
-                .load(R.drawable.test)
+                .load(R.drawable.icon_2x)
                 .apply(RequestOptions().circleCrop())
                 .into(iv_main_profile)
 
@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(view: View?) {
         when (view?.id) {
-            R.id.btn_main_capacity -> startActivity<AddCapacityActivity>()
+            R.id.btn_main_capacity -> startActivity<AddHistoryActivity>()
             R.id.btn_main_calendar -> startActivity<CalendarActivity>()
             R.id.btn_main_wiki -> startActivity<WikiActivity>()
             R.id.btn_main_setting -> startActivity<SettingActivity>()
