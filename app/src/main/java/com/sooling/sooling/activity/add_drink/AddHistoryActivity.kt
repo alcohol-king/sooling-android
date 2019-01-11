@@ -19,8 +19,7 @@ class AddHistoryActivity : AppCompatActivity() {
 
     private fun initView() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setTitle(R.string.all_add_history)
-        // supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_back)
+//         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_back)
 
         iv_minus.setOnClickListener {
             var count = tv_count.text.toString().toInt()

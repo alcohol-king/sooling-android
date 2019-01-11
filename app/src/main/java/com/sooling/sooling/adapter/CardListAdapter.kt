@@ -10,7 +10,9 @@ import android.widget.TextView
 import com.sooling.sooling.R
 import com.sooling.sooling.model.DrinkCard
 import com.sooling.sooling.util.GetCardData
+import kotlinx.android.synthetic.main.item_card.view.*
 import org.jetbrains.anko.backgroundResource
+
 
 class CardListAdapter(val context: Context, val cardList: List<DrinkCard>)
     : RecyclerView.Adapter<CardListAdapter.CardListViewHolder>() {
@@ -37,10 +39,10 @@ class CardListAdapter(val context: Context, val cardList: List<DrinkCard>)
     }
 
     inner class CardListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val cardBack: View = itemView.findViewById(R.id.view_card_back)
-        val cardMsg: TextView = itemView.findViewById(R.id.tv_card_msg1)
-        val cardMsg2: TextView = itemView.findViewById(R.id.tv_card_msg2)
-        val cardMsg3: TextView = itemView.findViewById(R.id.tv_card_msg3)
-        val drinkIcon: ImageView = itemView.findViewById(R.id.iv_main_drink)
+        val cardBack: View = itemView.view_card_back
+        val cardMsg: TextView = itemView.tv_card_msg1
+        val cardMsg2: TextView = itemView.tv_card_msg2
+        val cardMsg3: TextView = itemView.tv_card_msg3
+        val drinkIcon: ImageView = itemView.iv_main_drink
     }
 }

@@ -8,8 +8,8 @@ import android.view.View
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.sooling.sooling.R
-import com.sooling.sooling.activity.CalendarActivity
-import com.sooling.sooling.activity.SettingActivity
+import com.sooling.sooling.activity.calendar.CalendarActivity
+import com.sooling.sooling.activity.setting.SettingActivity
 import com.sooling.sooling.activity.WikiActivity
 import com.sooling.sooling.activity.add_drink.AddHistoryActivity
 import com.sooling.sooling.adapter.CardListAdapter

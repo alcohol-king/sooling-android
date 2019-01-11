@@ -1,13 +1,16 @@
 <resources>
-    <string name="app_name">Sooling</string>
+    <string name="app_name">옐로카드</string>
+    <string name="app_version">1.0</string>
     <string name="kakao_app_key">a879fa1e1d92450279113db589d86fb3</string>
 
     <string name="all_ok">확인</string>
     <string name="all_cancel">취소</string>
+    <string name="all_finish">완료</string>
     <string name="all_setting">환경설정</string>
     <string name="all_add_history">주량등록</string>
     <string name="all_calendar">캘린더</string>
     <string name="all_wiki">백과사전</string>
+    <string name="all_share">카드 공유</string>
     <string name="all_soju">소주</string>
     <string name="all_beer">맥주</string>
     <string name="all_wine">와인</string>
@@ -15,6 +18,8 @@
     <string name="all_year">년</string>
     <string name="all_month">월</string>
     <string name="all_day">일</string>
+
+    <string name="splash_msg">건강한 음주문화를 위한\n신개념 주량명함</string>
 
     <string name="main_title">Yellow Card</string>
     <string name="main_msg1">내가 가장 좋아하는 </string>
@@ -24,9 +29,30 @@
     <string name="main_msg5">함께 즐길 수 있어요.</string>
 
     <string name="add_msg">즐거운 술자리를 가졌나요?\n스텝에 맞게 입력해 주시면, 기록을 볼 수 있어요!</string>
-    <string name="add_question1">언제 마셨나요?</string>
-    <string name="add_question2">누구와 마셨나요?</string>
-    <string name="add_question3">어떤 술을 얼마나 마셨나요?</string>
+    <string name="add_question1">언제 마셨어?</string>
+    <string name="add_question2">누구랑 마셨어?</string>
+    <string name="add_question2_msg">몇 명의 친구와 즐거운 술자리를 가졌나요?</string>
+    <string name="add_question3">얼마나 마셨어?</string>
+
+    <string name="setting_title1">버전 정보</string>
+    <string name="setting_title2">개인 정보</string>
+    <string name="setting_title3">계정 정보 및 설정</string>
+    <string name="setting_version">현재 버전 1.0</string>
+    <string name="setting_update">업데이트</string>
+    <string name="setting_intro">Sooling &amp; Yellow Card 소개</string>
+    <string name="setting_service">서비스 이용약관</string>
+    <string name="setting_policy">개인 정보 취급 방침</string>
+    <string name="setting_profile">메인 프로필 수정</string>
+    <string name="setting_card">메인 카드 세팅</string>
+    <string name="setting_logout">계정 로그아웃</string>
+    <string name="setting_delete">계정 탈퇴하기</string>
+    <string name="setting_friend">친구한테 옐로카드 추천해줄까?</string>
+    <string name="setting_right">© 2018 Sooling. All Rights Reserved.</string>
+    <string name="setting_name">닉네임</string>
+    <string name="setting_state">음주 상태말</string>
+    <string name="setting_state_msg">상태 메세지를 입력해주세요.</string>
+    <string name="setting_label">라벨 지정</string>
+    <string name="setting_label_msg">주량라벨은 옐로카드만의 기준에 맞추어 보여집니다.\n최소 하나의 라벨을 지정해주세요 :)</string>
 </resources>
 
 
