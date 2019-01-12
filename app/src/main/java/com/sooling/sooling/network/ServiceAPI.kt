@@ -1,7 +1,7 @@
 package com.sooling.sooling.network
 
-import com.sooling.sooling.model.Drink
-import com.sooling.sooling.model.UserInfo
+import com.sooling.sooling.`object`.Drink
+import com.sooling.sooling.`object`.UserInfo
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST

@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.sooling.sooling.R
-import com.sooling.sooling.model.DrinkCard
-import com.sooling.sooling.util.GetCardData
+import com.sooling.sooling.`object`.DrinkCard
+import com.sooling.sooling.activity.model.GetCardData
 import kotlinx.android.synthetic.main.item_card.view.*
 import org.jetbrains.anko.backgroundResource
 

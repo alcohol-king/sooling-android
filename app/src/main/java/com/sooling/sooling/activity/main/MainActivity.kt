@@ -13,19 +13,21 @@ import com.sooling.sooling.activity.setting.SettingActivity
 import com.sooling.sooling.activity.WikiActivity
 import com.sooling.sooling.activity.add_drink.AddHistoryActivity
 import com.sooling.sooling.adapter.CardListAdapter
-import com.sooling.sooling.model.DrinkCard
+import com.sooling.sooling.adapter.IndexListAdapter
+import com.sooling.sooling.`object`.DrinkCard
 import com.sooling.sooling.util.RecyclerItemClickListener
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.startActivity
+import android.support.v7.widget.RecyclerView
 
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var adapter: CardListAdapter
     var cardList = listOf<DrinkCard>(
-            DrinkCard("BEER", "2000cc까지는 즐기면서"),
-            DrinkCard("SOJU", "2000cc까지는 즐기면서"),
-            DrinkCard("WINE", "2000cc까지는 즐기면서"),
-            DrinkCard("MAKGEOLLI", "2000cc까지는 즐기면서")
+            DrinkCard("BEER", "500cc까지는 즐기면서"),
+            DrinkCard("SOJU", "3잔까지는 멀쩡하게"),
+            DrinkCard("WINE", "1병까지는 즐기면서"),
+            DrinkCard("MAKGEOLLI", "1병까지는 즐기면서")
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,10 +49,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 this, LinearLayoutManager.HORIZONTAL, false
         )
 
-        val snapHelper = LinearSnapHelper()
-        snapHelper.attachToRecyclerView(rv_main_intro)
+        if (cardList.size < 2) rv_main_index.visibility = View.INVISIBLE
 
-        rv_main_intro.onFlingListener = snapHelper
+        val indexAdapter = IndexListAdapter(this, cardList)
+        rv_main_index.adapter = indexAdapter
+        rv_main_index.layoutManager = LinearLayoutManager(
+                this, LinearLayoutManager.HORIZONTAL, false
+        )
+
         rv_main_intro.addOnItemTouchListener(
                 RecyclerItemClickListener(applicationContext, rv_main_intro,
                         object : RecyclerItemClickListener.OnItemClickListener {
@@ -59,6 +65,21 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                             }
                         })
         )
+
+        // 카드 리스트에 indicator 추가
+        val snapHelper = LinearSnapHelper()
+        snapHelper.attachToRecyclerView(rv_main_intro)
+        rv_main_intro.onFlingListener = snapHelper
+
+        rv_main_intro.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+                indexAdapter.setItemIndex(
+                        (recyclerView.layoutManager as LinearLayoutManager)
+                                .findFirstVisibleItemPosition()
+                )
+            }
+        })
 
         btn_main_capacity.setOnClickListener(this)
         btn_main_calendar.setOnClickListener(this)

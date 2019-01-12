@@ -269,6 +269,7 @@
             android:background="@color/colorBeer"
             android:gravity="center"
             android:paddingVertical="20dp"
+            android:layout_gravity="bottom"
             android:text="@string/setting_right"
             android:textColor="@android:color/black"
             android:textStyle="bold" />
