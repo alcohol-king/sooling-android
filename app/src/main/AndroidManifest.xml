@@ -16,8 +16,8 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
         <meta-data
-            android:name="com.kakao.sdk.AppKey"
-            android:value="@string/kakao_app_key" />
+        android:name="com.kakao.sdk.AppKey"
+        android:value="@string/kakao_app_key" />
 
         <activity android:name=".activity.main.MainActivity">
             <intent-filter>

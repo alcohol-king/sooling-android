@@ -1,4 +1,4 @@
-package com.sooling.sooling.activity.model
+package com.sooling.sooling.model
 
 import android.content.Context
 import com.sooling.sooling.R

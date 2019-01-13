@@ -9,7 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.sooling.sooling.R
 import com.sooling.sooling.`object`.DrinkCard
-import com.sooling.sooling.activity.model.GetCardData
+import com.sooling.sooling.model.GetCardData
 import kotlinx.android.synthetic.main.item_card.view.*
 import org.jetbrains.anko.backgroundResource
 
@@ -30,12 +30,7 @@ class CardListAdapter(val context: Context, val cardList: List<DrinkCard>)
         val data = GetCardData(context)
         val type = cardList[position].drinkType
 
-        holder.cardBack.backgroundResource = data.getColor(type)
-        holder.drinkIcon.setImageResource(data.getDrinkIcon(type))
-
-        holder.cardMsg.text = data.getFirstMsg(type)
-        holder.cardMsg2.text = cardList[position].message
-        holder.cardMsg3.text = data.getLastMsg(type)
+        holder.bind(data, type)
     }
 
     inner class CardListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -44,5 +39,14 @@ class CardListAdapter(val context: Context, val cardList: List<DrinkCard>)
         val cardMsg2: TextView = itemView.tv_card_msg2
         val cardMsg3: TextView = itemView.tv_card_msg3
         val drinkIcon: ImageView = itemView.iv_main_drink
+
+        fun bind(data: GetCardData, type: String) {
+            cardBack.backgroundResource = data.getColor(type)
+            drinkIcon.setImageResource(data.getDrinkIcon(type))
+
+            cardMsg.text = data.getFirstMsg(type)
+            cardMsg2.text = cardList[position].message
+            cardMsg3.text = data.getLastMsg(type)
+        }
     }
 }

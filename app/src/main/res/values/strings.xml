@@ -1,7 +1,11 @@
 <resources>
     <string name="app_name">옐로카드</string>
     <string name="app_version">1.0</string>
-    <string name="kakao_app_key">a879fa1e1d92450279113db589d86fb3</string>
+    <!--<string name="kakao_app_key">a879fa1e1d92450279113db589d86fb3</string>-->
+    <string name="kakao_app_key">0fc351d8cfedb4dc194d5c026a59b306</string>
+    <string name="kakao_link_key">0fc351d8cfedb4dc194d5c026a59b306</string>
+    <string name="kakao_scheme">kakao0fc351d8cfedb4dc194d5c026a59b306</string>
+    <string name="kakaolink_host">kakaolink</string>
 
     <string name="all_ok">확인</string>
     <string name="all_cancel">취소</string>

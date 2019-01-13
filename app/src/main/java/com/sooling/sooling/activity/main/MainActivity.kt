@@ -4,21 +4,21 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.LinearSnapHelper
+import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.sooling.sooling.R
-import com.sooling.sooling.activity.calendar.CalendarActivity
-import com.sooling.sooling.activity.setting.SettingActivity
+import com.sooling.sooling.`object`.DrinkCard
 import com.sooling.sooling.activity.WikiActivity
 import com.sooling.sooling.activity.add_drink.AddHistoryActivity
+import com.sooling.sooling.activity.calendar.CalendarActivity
+import com.sooling.sooling.activity.setting.SettingActivity
 import com.sooling.sooling.adapter.CardListAdapter
-import com.sooling.sooling.adapter.IndexListAdapter
-import com.sooling.sooling.`object`.DrinkCard
+import com.sooling.sooling.adapter.IndicatorAdapter
 import com.sooling.sooling.util.RecyclerItemClickListener
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.startActivity
-import android.support.v7.widget.RecyclerView
 
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
@@ -44,34 +44,25 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 .into(iv_main_profile)
 
         adapter = CardListAdapter(this, cardList)
-        rv_main_intro.adapter = adapter
-        rv_main_intro.layoutManager = LinearLayoutManager(
+        rv_main_card.adapter = adapter
+        rv_main_card.layoutManager = LinearLayoutManager(
                 this, LinearLayoutManager.HORIZONTAL, false
         )
 
         if (cardList.size < 2) rv_main_index.visibility = View.INVISIBLE
 
-        val indexAdapter = IndexListAdapter(this, cardList)
+        val indexAdapter = IndicatorAdapter(this, cardList)
         rv_main_index.adapter = indexAdapter
         rv_main_index.layoutManager = LinearLayoutManager(
                 this, LinearLayoutManager.HORIZONTAL, false
         )
 
-        rv_main_intro.addOnItemTouchListener(
-                RecyclerItemClickListener(applicationContext, rv_main_intro,
-                        object : RecyclerItemClickListener.OnItemClickListener {
-                            override fun onItemClick(view: View, position: Int) {
-                                rv_main_intro.smoothScrollToPosition(position)
-                            }
-                        })
-        )
-
         // 카드 리스트에 indicator 추가
         val snapHelper = LinearSnapHelper()
-        snapHelper.attachToRecyclerView(rv_main_intro)
-        rv_main_intro.onFlingListener = snapHelper
+        snapHelper.attachToRecyclerView(rv_main_card)
+        rv_main_card.onFlingListener = snapHelper
 
-        rv_main_intro.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+        rv_main_card.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
                 indexAdapter.setItemIndex(
@@ -81,10 +72,20 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
         })
 
+        rv_main_index.addOnItemTouchListener(
+                RecyclerItemClickListener(applicationContext, rv_main_index,
+                        object : RecyclerItemClickListener.OnItemClickListener {
+                            override fun onItemClick(view: View, position: Int) {
+                                rv_main_card.smoothScrollToPosition(position)
+                            }
+                        })
+        )
+
         btn_main_capacity.setOnClickListener(this)
         btn_main_calendar.setOnClickListener(this)
         btn_main_wiki.setOnClickListener(this)
         btn_main_setting.setOnClickListener(this)
+        btn_main_share.setOnClickListener(this)
     }
 
     override fun onClick(view: View?) {
@@ -93,6 +94,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             R.id.btn_main_calendar -> startActivity<CalendarActivity>()
             R.id.btn_main_wiki -> startActivity<WikiActivity>()
             R.id.btn_main_setting -> startActivity<SettingActivity>()
+            R.id.btn_main_share -> {
+            }
         }
     }
 }
