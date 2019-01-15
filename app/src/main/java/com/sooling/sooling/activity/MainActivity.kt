@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun initView() {
         Glide.with(applicationContext)
-                .load(R.drawable.test)
+                .load(R.drawable.icon)
                 .apply(RequestOptions().circleCrop())
                 .into(iv_main_profile)
 

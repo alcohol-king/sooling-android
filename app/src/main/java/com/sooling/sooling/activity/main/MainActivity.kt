@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.sooling.sooling.R
 import com.sooling.sooling.`object`.DrinkCard
-import com.sooling.sooling.activity.WikiActivity
+import com.sooling.sooling.activity.wiki.WikiActivity
 import com.sooling.sooling.activity.add_drink.AddHistoryActivity
 import com.sooling.sooling.activity.calendar.CalendarActivity
 import com.sooling.sooling.activity.setting.SettingActivity
