@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity
 import com.kakao.auth.Session
 import com.sooling.sooling.R
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_main.*
+
 
 class LoginActivity : AppCompatActivity() {
 
