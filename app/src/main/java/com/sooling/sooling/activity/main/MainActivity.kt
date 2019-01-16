@@ -16,6 +16,7 @@ import com.sooling.sooling.activity.calendar.CalendarActivity
 import com.sooling.sooling.activity.setting.SettingActivity
 import com.sooling.sooling.adapter.CardListAdapter
 import com.sooling.sooling.adapter.IndicatorAdapter
+import com.sooling.sooling.custom_view.ShareDialog
 import com.sooling.sooling.util.RecyclerItemClickListener
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.startActivity
@@ -95,6 +96,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             R.id.btn_main_wiki -> startActivity<WikiActivity>()
             R.id.btn_main_setting -> startActivity<SettingActivity>()
             R.id.btn_main_share -> {
+                ShareDialog(this).show()
             }
         }
     }

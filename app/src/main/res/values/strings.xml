@@ -3,7 +3,6 @@
     <string name="app_version">1.0</string>
     <!--<string name="kakao_app_key">a879fa1e1d92450279113db589d86fb3</string>-->
     <string name="kakao_app_key">0fc351d8cfedb4dc194d5c026a59b306</string>
-    <string name="kakao_link_key">0fc351d8cfedb4dc194d5c026a59b306</string>
     <string name="kakao_scheme">kakao0fc351d8cfedb4dc194d5c026a59b306</string>
     <string name="kakaolink_host">kakaolink</string>
 
@@ -57,6 +56,13 @@
     <string name="setting_state_msg">상태 메세지를 입력해주세요.</string>
     <string name="setting_label">라벨 지정</string>
     <string name="setting_label_msg">주량라벨은 옐로카드만의 기준에 맞추어 보여집니다.\n최소 하나의 라벨을 지정해주세요 :)</string>
+
+    <string name="share_msg">Let&quot;s Share it.</string>
+    <string name="share_intro">나만의 옐로카드를 공유해보세요 :)</string>
+    <string name="share_download">이미지로 저장하기</string>
+    <string name="share_kakao">카톡으로 공유하기</string>
+
+    <string name="label">Beer\n3.0</string>
 </resources>
 
 
