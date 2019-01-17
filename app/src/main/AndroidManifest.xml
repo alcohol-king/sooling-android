@@ -16,8 +16,8 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
         <meta-data
-        android:name="com.kakao.sdk.AppKey"
-        android:value="@string/kakao_app_key" />
+            android:name="com.kakao.sdk.AppKey"
+            android:value="@string/kakao_app_key" />
 
         <activity android:name=".activity.main.MainActivity">
             <intent-filter>
@@ -28,7 +28,7 @@
         </activity>
 
         <activity android:name=".activity.wiki.WikiActivity" />
-        <activity android:name=".activity.wiki.WikiDetailActivity"/>
+        <activity android:name=".activity.wiki.WikiDetailActivity" />
         <activity android:name="com.sooling.sooling.activity.add_drink.AddHistoryActivity" />
         <activity android:name=".activity.calendar.CalendarActivity" />
         <activity android:name=".activity.setting.SettingActivity" />

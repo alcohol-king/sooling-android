@@ -2,15 +2,16 @@ package com.sooling.sooling.custom_view
 
 import android.app.Dialog
 import android.content.Context
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.View
 import android.view.Window
 import com.sooling.sooling.R
 import com.sooling.sooling.`object`.DrinkCard
 import com.sooling.sooling.model.GetCardData
+import com.sooling.sooling.util.GenerateCardCrop
 import kotlinx.android.synthetic.main.dialog_share.*
 import org.jetbrains.anko.backgroundResource
+import org.jetbrains.anko.toast
 
 
 class ShareDialog(context: Context, val drinkCard: DrinkCard, val name: String)
@@ -39,6 +40,11 @@ class ShareDialog(context: Context, val drinkCard: DrinkCard, val name: String)
         when (view?.id) {
             R.id.ib_share_close -> this.dismiss()
             R.id.ib_download -> {
+                GenerateCardCrop(name).captureScreen(window, context)
+                context.toast(context.resources.getString(R.string.download_success))
+                dismiss()
+            }
+            R.id.ib_share_kakao -> {
 
             }
         }

@@ -21,7 +21,6 @@ import com.sooling.sooling.adapter.CardListAdapter
 import com.sooling.sooling.adapter.IndicatorAdapter
 import com.sooling.sooling.custom_view.ShareDialog
 import com.sooling.sooling.util.RecyclerItemClickListener
-import com.sooling.sooling.util.SnapHelperSwipeOneItem
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
@@ -48,7 +47,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun initView() {
         Glide.with(applicationContext)
-                .load(R.drawable.icon_2x)
+                .load(R.drawable.icon)
                 .apply(RequestOptions().circleCrop())
                 .into(iv_main_profile)
 
@@ -110,7 +109,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     // 권한 요청
     private fun askForPermission() {
-        val permissions = arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE, android.Manifest.permission.CAMERA)
+        val permissions = arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.CAMERA)
         ActivityCompat.requestPermissions(this, permissions, requestPermission)
     }
 
@@ -119,7 +118,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         if (requestCode == requestPermission) {
             for (i in permissions.indices) {
-                if (permissions[i] == Manifest.permission.READ_EXTERNAL_STORAGE ||
+                if (permissions[i] == Manifest.permission.WRITE_EXTERNAL_STORAGE ||
                         permissions[i] == Manifest.permission.CAMERA) {
 
                     if (grantResults[i] != PackageManager.PERMISSION_GRANTED) {
