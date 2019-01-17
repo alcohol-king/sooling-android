@@ -30,7 +30,7 @@ class ShareDialog(context: Context, val drinkCard: DrinkCard, val name: String)
         val data = GetCardData(context)
         view_card_back.backgroundResource = data.getColor(drinkCard.drinkType)
         tv_card_msg1.text = data.getFirstMsg(drinkCard.drinkType)
-        tv_share_name.setText("By. " + name)
+        tv_share_name.setText("By. $name")
 
         ib_share_close.setOnClickListener(this)
         ib_download.setOnClickListener(this)
@@ -40,7 +40,7 @@ class ShareDialog(context: Context, val drinkCard: DrinkCard, val name: String)
         when (view?.id) {
             R.id.ib_share_close -> this.dismiss()
             R.id.ib_download -> {
-                GenerateCardCrop(name).captureScreen(window, context)
+                GenerateCardCrop(name, layout_dialog_card).captureScreen(window, context)
                 context.toast(context.resources.getString(R.string.download_success))
                 dismiss()
             }
