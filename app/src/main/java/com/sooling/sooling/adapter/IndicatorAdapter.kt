@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.sooling.sooling.R
 import com.sooling.sooling.`object`.DrinkCard
-import com.sooling.sooling.model.ID
+import com.sooling.sooling.`object`.ID
 import org.jetbrains.anko.*
 
 

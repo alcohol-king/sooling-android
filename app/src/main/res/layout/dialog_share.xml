@@ -13,7 +13,7 @@
         android:src="@drawable/ic_close" />
 
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/iv_dialog_card"
+        android:id="@+id/layout_dialog_card"
         android:layout_width="250dp"
         android:layout_height="250dp"
         android:layout_centerHorizontal="true"
@@ -38,6 +38,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
             android:orientation="vertical">
 
             <TextView
@@ -46,6 +47,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="27dp"
                 android:layout_marginTop="32dp"
+                android:background="@android:color/transparent"
                 android:textColor="@android:color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -67,6 +69,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="27dp"
+                android:background="@android:color/transparent"
                 android:text="@string/main_msg3"
                 android:textColor="@android:color/black"
                 android:textSize="16sp"
@@ -80,15 +83,17 @@
             android:layout_gravity="right|bottom"
             android:layout_marginRight="27dp"
             android:layout_marginBottom="18dp"
+            android:background="@android:color/transparent"
             android:scaleType="fitCenter"
-            android:src="@drawable/beer_3x" />
+            android:src="@drawable/img_beer" />
 
         <TextView
+            android:id="@+id/tv_share_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:layout_margin="20dp"
-            android:id="@+id/tv_share_name"
+            android:background="@android:color/transparent"
             android:textColor="@android:color/black" />
     </FrameLayout>
 
@@ -96,7 +101,7 @@
         android:id="@+id/tv_share_msg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/iv_dialog_card"
+        android:layout_below="@id/layout_dialog_card"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="35dp"
         android:text="@string/share_msg"

@@ -22,7 +22,7 @@ class SettingProfileActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun initView() {
         Glide.with(applicationContext)
-                .load(R.drawable.icon_2x)
+                .load(R.drawable.icon)
                 .apply(RequestOptions().circleCrop())
                 .into(iv_setting_profile)
     }

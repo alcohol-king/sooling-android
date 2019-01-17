@@ -37,7 +37,7 @@ class GetCardData(val context: Context) {
 
     fun getDrinkIcon(type: String): Int =
             when (type) {
-                beer -> R.drawable.beer_2x
-                else -> R.drawable.beer_2x
+                beer -> R.drawable.img_beer
+                else -> R.drawable.img_beer
             }
 }
