@@ -18,17 +18,23 @@ import java.io.IOException
 import java.util.*
 
 
-class GenerateCardCrop(val name: String, val layout: FrameLayout) {
+class GenerateCardCrop(val name: String, val layout: FrameLayout, val download: Boolean) {
+
     // 화면 전체 캡쳐
     fun captureScreen(window: Window, context: Context) {
         val rootView = window.decorView
         val cardImg = saveCardImg(rootView)
 
-        if (cardImg != null) {
+        if (cardImg == null)
+            context.toast(context.getString(R.string.err_img_save))
+        else if (download) {
             val intent = Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(cardImg))
             context.sendBroadcast(intent)
-        } else
-            context.toast(context.getString(R.string.err_img_save))
+            context.toast(context.getString(R.string.download_success))
+        } else {
+            val msg = context.getString(R.string.share_kakao_msg)
+            ShareCardWithKakaoTalk(context, cardImg).uploadImg(name + msg)
+        }
     }
 
     fun cropCard(bmp: Bitmap): Bitmap {

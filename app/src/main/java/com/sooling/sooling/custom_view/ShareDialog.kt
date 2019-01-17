@@ -11,7 +11,6 @@ import com.sooling.sooling.model.GetCardData
 import com.sooling.sooling.util.GenerateCardCrop
 import kotlinx.android.synthetic.main.dialog_share.*
 import org.jetbrains.anko.backgroundResource
-import org.jetbrains.anko.toast
 
 
 class ShareDialog(context: Context, val drinkCard: DrinkCard, val name: String)
@@ -34,18 +33,16 @@ class ShareDialog(context: Context, val drinkCard: DrinkCard, val name: String)
 
         ib_share_close.setOnClickListener(this)
         ib_download.setOnClickListener(this)
+        ib_share_kakao.setOnClickListener(this)
     }
 
     override fun onClick(view: View?) {
         when (view?.id) {
             R.id.ib_share_close -> this.dismiss()
-            R.id.ib_download -> {
-                GenerateCardCrop(name, layout_dialog_card).captureScreen(window, context)
-                context.toast(context.resources.getString(R.string.download_success))
+            R.id.ib_download, R.id.ib_share_kakao -> {
+                GenerateCardCrop(name, layout_dialog_card, view.id == R.id.ib_download)
+                        .captureScreen(window, context)
                 dismiss()
-            }
-            R.id.ib_share_kakao -> {
-
             }
         }
     }
