@@ -40,4 +40,13 @@ class GetCardData(val context: Context) {
                 beer -> R.drawable.img_beer
                 else -> R.drawable.img_beer
             }
+
+    fun getCapacityArray(type: String): Array<String> = context.resources.getStringArray(
+            when (type) {
+                beer -> R.array.beer_capacity
+                wine -> R.array.wine_capacity
+                soju -> R.array.soju_capacity
+                makgeolli -> R.array.makeolli_capacity
+                else -> R.array.beer_capacity
+            })
 }
