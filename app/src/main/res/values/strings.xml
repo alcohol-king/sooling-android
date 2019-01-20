@@ -80,7 +80,7 @@
         <item>2000cc</item>
         <item>3000cc</item>
         <item>5000cc</item>
-        <item>무한대</item>
+        <item>더 많이!</item>
     </string-array>
 
     <string-array name="soju_capacity">
@@ -91,7 +91,7 @@
         <item>4병</item>
         <item>5병</item>
         <item>6병</item>
-        <item>무한대</item>
+        <item>더 많이!</item>
     </string-array>
 
     <string-array name="wine_capacity">
@@ -102,7 +102,7 @@
         <item>5잔</item>
         <item>6잔</item>
         <item>7잔</item>
-        <item>무한대</item>
+        <item>더 많이!</item>
     </string-array>
 
     <string-array name="makeolli_capacity">
@@ -113,7 +113,7 @@
         <item>4병</item>
         <item>5병</item>
         <item>6병</item>
-        <item>무한대</item>
+        <item>더 많이!</item>
     </string-array>
 </resources>
 

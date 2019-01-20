@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -70,8 +69,8 @@
 
                 <ImageButton
                     android:id="@+id/iv_minus"
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
+                    android:layout_width="17dp"
+                    android:layout_height="17dp"
                     android:background="@drawable/back_circle_gray"
                     android:scaleType="fitCenter"
                     android:src="@drawable/ic_minus" />
@@ -133,9 +132,9 @@
                     android:layout_height="30dp"
                     android:layout_marginRight="3dp"
                     android:layout_weight="1"
-                    android:background="@drawable/back_rect_gray"
+                    android:background="@drawable/back_rect_black2"
                     android:text="@string/all_beer"
-                    android:textColor="@color/colorDarkerGray" />
+                    android:textColor="@android:color/white" />
 
                 <Button
                     android:id="@+id/btn_add_soju"
@@ -176,9 +175,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"
-                android:background="@color/colorDarkerGray">
+                android:background="@color/colorGray">
 
                 <TableRow>
+
                     <Button
                         android:id="@+id/btn_capacity1"
                         android:layout_height="30dp"
@@ -261,6 +261,26 @@
 
                 </TableRow>
             </TableLayout>
+
+            <android.support.v4.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="16dp">
+
+                <LinearLayout
+                    android:id="@+id/person_properties"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rv_add_history"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:overScrollMode="never" />
+                </LinearLayout>
+
+            </android.support.v4.widget.NestedScrollView>
 
             <Button
                 android:layout_width="wrap_content"

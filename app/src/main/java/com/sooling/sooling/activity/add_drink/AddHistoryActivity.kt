@@ -2,27 +2,25 @@ package com.sooling.sooling.activity.add_drink
 
 import android.app.DatePickerDialog
 import android.graphics.Color
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.view.Gravity
+import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import android.widget.Button
 import com.sooling.sooling.R
+import com.sooling.sooling.adapter.HistoryListAdapter
 import com.sooling.sooling.model.GetCardData
 import kotlinx.android.synthetic.main.activity_add_history.*
 import kotlinx.android.synthetic.main.toolbar.*
-import org.jetbrains.anko.*
 import java.util.*
 
 class AddHistoryActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var drinkBtns: ArrayList<Button>
     lateinit var capacityBtns: ArrayList<Button>
-    var drinkBtnStatus = BooleanArray(4)
-    var beerBtnStatus = BooleanArray(8)
-    var sojuStatus = BooleanArray(8)
-    var wineStatus = BooleanArray(8)
-    var makgeolliStatus = BooleanArray(8)
+    var drinkType = "맥주"
+    var drinkIndex = 0
+    var capacityStrs = Array(8) { "" }
+    var drinkBtnIndex = arrayListOf(-1, -1, -1, -1)
 
     val c = Calendar.getInstance()
     var year = c.get(Calendar.YEAR)
@@ -33,10 +31,7 @@ class AddHistoryActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_history)
 
-        drinkBtns = arrayListOf(
-                btn_add_beer, btn_add_soju, btn_add_wine, btn_add_makgeolli
-        )
-
+        drinkBtns = arrayListOf(btn_add_beer, btn_add_soju, btn_add_wine, btn_add_makgeolli)
         capacityBtns = arrayListOf(
                 btn_capacity1, btn_capacity2, btn_capacity3, btn_capacity4,
                 btn_capacity5, btn_capacity6, btn_capacity7, btn_capacity8
@@ -46,36 +41,60 @@ class AddHistoryActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun initView() {
+        capacityStrs = GetCardData(this).getCapacityArray(drinkType)
+        capacityBtns.forEachIndexed { index, btn ->
+            btn.text = capacityStrs[index]
+        }
+
         toolbar_title.text = getString(R.string.all_add_history)
         btn_add_date.text = getDateStr(year, month, day)
 
+        val strList = arrayListOf<String>()
+        val adapter = HistoryListAdapter(this, strList)
+        rv_add_history.adapter = adapter
+        rv_add_history.layoutManager = LinearLayoutManager(
+                this, LinearLayoutManager.VERTICAL, false
+        )
+
         drinkBtns.forEachIndexed { index, btn ->
             btn.setOnClickListener {
-                drinkBtnStatus[index] = !drinkBtnStatus[index]
-                btn.backgroundDrawable =
-                        resources.getDrawable(
-                                if (drinkBtnStatus[index]) R.drawable.back_rect_black2
-                                else R.drawable.back_rect_gray
-                        ) as Drawable
-                btn.textColor =
-                        if (drinkBtnStatus[index]) Color.WHITE
-                        else R.color.colorDarkerGray
+                drinkType = btn.text.toString()
+                capacityStrs = GetCardData(this).getCapacityArray(drinkType)
 
-                val capacityStr = GetCardData(this).getCapacityArray(btn.text.toString())
-                /*capacityBtns.forEachIndexed { index, btn ->
-                    btn.text = capacityStr[index]
-                    btn.backgroundColor =
-                            if (beerBtnStatus[index]) Color.BLACK
-                            else Color.TRANSPARENT
-                }*/
+                if (this.drinkIndex != index) {
+                    drinkBtns[drinkIndex].setTextColor(resources.getColor(R.color.colorDarkerGray))
+                    drinkBtns[drinkIndex].setBackgroundResource(R.drawable.back_rect_gray)
+
+                    drinkBtns[index].setTextColor(Color.WHITE)
+                    drinkBtns[index].setBackgroundResource(R.drawable.back_rect_black2)
+
+                    // 술 용량 버튼 초기화
+                    capacityBtns[drinkIndex].setBackgroundColor(Color.WHITE)
+                    capacityBtns[drinkIndex].setTextColor(resources.getColor(R.color.colorDarkerGray))
+
+                    drinkIndex = index
+                }
+
+                capacityBtns.forEachIndexed { index, btn ->
+                    btn.text = capacityStrs[index]
+
+                    if (index == drinkBtnIndex[drinkIndex]) {
+                        capacityBtns[drinkIndex].setBackgroundColor(Color.BLACK)
+                        capacityBtns[drinkIndex].setTextColor(Color.WHITE)
+                    }
+                }
             }
         }
 
         capacityBtns.forEachIndexed { index, btn ->
-            if (index < 6) {
+            btn.setOnClickListener {
+                capacityBtns[index].setBackgroundColor(Color.WHITE)
+                capacityBtns[index].setTextColor(resources.getColor(R.color.colorDarkerGray))
 
-            } else {
+                btn.setTextColor(Color.WHITE)
+                btn.setBackgroundColor(Color.BLACK)
 
+                drinkBtnIndex[drinkIndex] = index
             }
         }
 
@@ -83,20 +102,6 @@ class AddHistoryActivity : AppCompatActivity(), View.OnClickListener {
         iv_minus.setOnClickListener(this)
         iv_plus.setOnClickListener(this)
         btn_add_date.setOnClickListener(this)
-    }
-
-    fun showInputCapacityDialog() {
-        alert {
-            linearLayout {
-                gravity = Gravity.CENTER_HORIZONTAL
-                textView("더 많이요? 그러다 죽어요!\n적당한 음주를 권장합니다.ㅜㅜ")
-                editText {
-
-                }
-                view {
-                }
-            }
-        }.show()
     }
 
     override fun onClick(view: View?) {
@@ -126,4 +131,10 @@ class AddHistoryActivity : AppCompatActivity(), View.OnClickListener {
 
     fun getDateStr(year: Int, month: Int, day: Int): String =
             "" + year + "년 " + (month + 1) + "월 " + day + "일"
+
+    fun getHistoryStr(people: Int): String {
+        val peopleCount = if (people > 0) "$people 명과" else "혼자서"
+
+        return "$peopleCount $drinkType ${capacityStrs[drinkBtnIndex[drinkIndex]]} 마셨어요."
+    }
 }

@@ -43,10 +43,10 @@ class GetCardData(val context: Context) {
 
     fun getCapacityArray(type: String): Array<String> = context.resources.getStringArray(
             when (type) {
-                beer -> R.array.beer_capacity
-                wine -> R.array.wine_capacity
-                soju -> R.array.soju_capacity
-                makgeolli -> R.array.makeolli_capacity
+                "맥주" -> R.array.beer_capacity
+                "와인" -> R.array.wine_capacity
+                "소주" -> R.array.soju_capacity
+                "막걸리" -> R.array.makeolli_capacity
                 else -> R.array.beer_capacity
             })
 }

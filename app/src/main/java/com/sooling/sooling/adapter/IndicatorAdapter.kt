@@ -14,7 +14,7 @@ import org.jetbrains.anko.*
 class IndicatorAdapter(val context: Context, var cardList: List<DrinkCard>)
     : RecyclerView.Adapter<IndicatorAdapter.IndicatorViewHolder>() {
     val indexList = Array(cardList.size) { false }
-    var index = 0 // 선택된 item의 index
+    var index = 0 // 선택된 item의 drinkIndex
 
     init {
         if (cardList.isNotEmpty())
