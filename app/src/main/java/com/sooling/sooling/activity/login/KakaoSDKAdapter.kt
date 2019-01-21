@@ -36,7 +36,7 @@ class KakaoSDKAdapter : KakaoAdapter() {
 
                 // KAKAO_LOGIN_ALL : 모든 로그인 방식을 제공
 
-                return arrayOf(AuthType.KAKAO_ACCOUNT)
+                return arrayOf(AuthType.KAKAO_LOGIN_ALL)
 
             }
 
@@ -81,8 +81,8 @@ class KakaoSDKAdapter : KakaoAdapter() {
     // Application이 가지고 있는 정보를 얻기 위한 인터페이스 입니다.
     override fun getApplicationConfig(): IApplicationConfig {
         return object : IApplicationConfig {
-            val topActivity: Activity?
-                get() = GlobalApplication.getCurrentActivity()
+//            val getTopActivity: Activity?
+//                get() = GlobalApplication.getCurrentActivity()
 
             override fun getApplicationContext(): Context? {
                 return GlobalApplication.getGlobalApplicationContext()

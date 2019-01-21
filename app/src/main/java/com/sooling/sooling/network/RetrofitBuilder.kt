@@ -15,4 +15,5 @@ class RetrofitBuilder {
 
         restAPI = retrofit.create(ServiceAPI::class.java)
     }
+
 }
