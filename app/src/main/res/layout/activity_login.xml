@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -7,29 +7,65 @@
         android:layout_height="match_parent"
         tools:context=".activity.login.LoginActivity">
 
-    <android.support.v7.widget.Toolbar
-            android:id="@+id/main_toolbar"
-            android:layout_width="match_parent"
+    <TextView
+            android:id="@+id/main_text1"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
-            android:minHeight="?attr/actionBarSize">
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="100dp"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:text="건강한 음주문화를 위한"/>
 
-        <TextView
-                android:id="@+id/tv_main_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/app_name"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Widget.ActionBar.Title" />
-    </android.support.v7.widget.Toolbar>
+    <TextView
+            android:id="@+id/main_text2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:text="신개념 주량명함"
+            android:layout_alignTop="@+id/main_text1"
+            android:layout_marginTop="34dp"/>
+
+    <ImageView
+            android:id="@+id/logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/logo_img"
+            android:layout_centerHorizontal="true"
+            android:layout_alignTop="@+id/main_text2"
+            android:layout_marginTop="34dp"/>
+
+
+    
+    <ImageView
+            android:layout_width="203dp"
+            android:layout_height="326dp"
+            android:background="@drawable/main_hand_illust_img"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"/>
+    
+    <ImageView
+            android:id="@+id/btn_real_login"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:background="@drawable/kakao_login_button"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="50dp"
+            android:layout_marginBottom="100dp"
+            />
+
+
 
     <com.kakao.usermgmt.LoginButton
             android:id="@+id/btn_kakao_login"
             android:layout_width="wrap_content"
             android:layout_height="53dp"
-            android:layout_marginTop="436dp"
+            android:layout_marginTop="550dp"
             android:layout_marginLeft="30dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/main_toolbar"/>
+            android:visibility="gone"/>
 
 
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>

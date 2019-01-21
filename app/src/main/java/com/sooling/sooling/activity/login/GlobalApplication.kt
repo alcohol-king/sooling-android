@@ -15,14 +15,14 @@ class GlobalApplication : Application() {
             return obj
         }
 
-        fun getCurrentActivity(): Activity ?{
-            return currentActivity
-        }
-
-        // Activity가 올라올때마다 Activity의 onCreate에서 호출해줘야한다.
-        fun setCurrentActivity(currentActivity: Activity) {
-            Companion.currentActivity = currentActivity
-        }
+//        fun getCurrentActivity(): Activity ?{
+//            return currentActivity
+//        }
+//
+//        // Activity가 올라올때마다 Activity의 onCreate에서 호출해줘야한다.
+//        fun setCurrentActivity(currentActivity: Activity) {
+//            Companion.currentActivity = currentActivity
+//        }
 
     }
 

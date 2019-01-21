@@ -4,22 +4,19 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.LinearLayoutManager
-import android.util.Log
 import android.view.View
-import android.widget.Toast
 import com.sooling.sooling.R
 import com.sooling.sooling.activity.wiki.adapter.WikiAdapter
-import com.sooling.sooling.model.AlcoholWiki
+import com.sooling.sooling.model.DrinkWikiMain
 import kotlinx.android.synthetic.main.activity_wiki.*
 
 class WikiActivity : AppCompatActivity() {
 
-    private var wikiList = arrayListOf<AlcoholWiki>(
-            AlcoholWiki("소주", R.drawable.soju_img),
-            AlcoholWiki("맥주", R.drawable.beer_img),
-            AlcoholWiki("막걸리", R.drawable.makgulri_img),
-            AlcoholWiki("와인", R.drawable.wine_img)
+    private var wikiList = arrayListOf<DrinkWikiMain>(
+            DrinkWikiMain("소주", R.drawable.soju_img),
+            DrinkWikiMain("맥주", R.drawable.beer_img),
+            DrinkWikiMain("막걸리", R.drawable.makgulri_img),
+            DrinkWikiMain("와인", R.drawable.wine_img)
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
