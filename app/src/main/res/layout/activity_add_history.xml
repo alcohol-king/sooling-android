@@ -1,25 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.constraint.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar_main"
-            android:layout_width="0dp"
-            android:layout_height="60dp"
-            android:background="@android:color/transparent"
-            android:elevation="@null"
-            android:gravity="center_vertical"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-        </android.support.v7.widget.Toolbar>
+        <include layout="@layout/toolbar" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -29,67 +18,59 @@
             android:orientation="vertical">
 
             <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="40dp"
+                android:lineSpacingExtra="10sp"
+                android:text="@string/add_msg"
+                android:textColor="@android:color/black"
+                android:textSize="14sp" />
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="60dp"
-                android:background="@color/colorBeer"
                 android:padding="3dp"
                 android:text="@string/add_question1"
                 android:textColor="@android:color/black"
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
-            <LinearLayout
-                android:layout_width="120dp"
+            <Button
+                android:id="@+id/btn_add_date"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
+                android:background="@android:color/transparent"
+                android:elevation="@null"
+                android:text="2018년 9월 11일"
+                android:textSize="14sp"
+                android:textStyle="bold" />
 
-                <Button
-                    android:id="@+id/btn_add_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/transparent"
-                    android:elevation="@null"
-                    android:text="2018년 9월 11일"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-
-                <View
-                    android:layout_width="120dp"
-                    android:layout_height="1dp"
-                    android:background="@android:color/black" />
-            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@android:color/black" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:background="@color/colorBeer"
                 android:padding="3dp"
                 android:text="@string/add_question2"
                 android:textColor="@android:color/black"
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:text="@string/add_question2_msg"
-                android:textColor="@android:color/black" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:gravity="center_vertical"
+                android:gravity="center"
                 android:orientation="horizontal">
 
                 <ImageButton
                     android:id="@+id/iv_minus"
-                    android:layout_width="14dp"
-                    android:layout_height="14dp"
+                    android:layout_width="17dp"
+                    android:layout_height="17dp"
                     android:background="@drawable/back_circle_gray"
                     android:scaleType="fitCenter"
                     android:src="@drawable/ic_minus" />
@@ -106,8 +87,8 @@
 
                 <ImageButton
                     android:id="@+id/iv_plus"
-                    android:layout_width="14dp"
-                    android:layout_height="14dp"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
                     android:background="@drawable/back_circle_gray"
                     android:scaleType="fitCenter"
                     android:src="@drawable/ic_plus" />
@@ -123,7 +104,7 @@
             </LinearLayout>
 
             <View
-                android:layout_width="120dp"
+                android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="10dp"
                 android:background="@android:color/black" />
@@ -132,18 +113,187 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:background="@color/colorBeer"
+                android:layout_marginBottom="15dp"
                 android:padding="3dp"
                 android:text="@string/add_question3"
                 android:textColor="@android:color/black"
                 android:textSize="14sp"
                 android:textStyle="bold" />
 
-            <android.support.v7.widget.RecyclerView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-            </android.support.v7.widget.RecyclerView>
+                <Button
+                    android:id="@+id/btn_add_beer"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="3dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/back_rect_black2"
+                    android:text="@string/all_beer"
+                    android:textColor="@android:color/white" />
+
+                <Button
+                    android:id="@+id/btn_add_soju"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginHorizontal="3dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/back_rect_gray"
+                    android:text="@string/all_soju"
+                    android:textColor="@color/colorDarkerGray" />
+
+                <Button
+                    android:id="@+id/btn_add_wine"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginHorizontal="3dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/back_rect_gray"
+                    android:text="@string/all_wine"
+                    android:textColor="@color/colorDarkerGray" />
+
+                <Button
+                    android:id="@+id/btn_add_makgeolli"
+                    style="?android:attr/borderlessButtonStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/back_rect_gray"
+                    android:text="@string/all_makgeolli"
+                    android:textColor="@color/colorDarkerGray" />
+
+            </LinearLayout>
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:background="@color/colorGray">
+
+                <TableRow>
+
+                    <Button
+                        android:id="@+id/btn_capacity1"
+                        android:layout_height="30dp"
+                        android:layout_margin="1dp"
+                        android:layout_weight="1"
+                        android:background="@android:color/white"
+                        android:text="300cc"
+                        android:textColor="@color/colorDarkerGray" />
+
+                    <Button
+                        android:id="@+id/btn_capacity2"
+                        android:layout_height="30dp"
+                        android:layout_marginVertical="1dp"
+                        android:layout_marginRight="1dp"
+                        android:layout_weight="1"
+                        android:background="@android:color/white"
+                        android:text="300cc"
+                        android:textColor="@color/colorDarkerGray" />
+
+                    <Button
+                        android:id="@+id/btn_capacity3"
+                        android:layout_height="30dp"
+                        android:layout_marginVertical="1dp"
+                        android:layout_weight="1"
+                        android:background="@android:color/white"
+                        android:text="300cc"
+                        android:textColor="@color/colorDarkerGray" />
+
+                    <Button
+                        android:id="@+id/btn_capacity4"
+                        android:layout_height="30dp"
+                        android:layout_margin="1dp"
+                        android:layout_weight="1"
+                        android:background="@android:color/white"
+                        android:text="300cc"
+                        android:textColor="@color/colorDarkerGray" />
+
+                </TableRow>
+
+                <TableRow>
+
+                    <Button
+                        android:id="@+id/btn_capacity5"
+                        android:layout_height="30dp"
+                        android:layout_marginHorizontal="1dp"
+                        android:layout_marginBottom="1dp"
+                        android:layout_weight="1"
+                        android:background="@android:color/white"
+                        android:text="300cc"
+                        android:textColor="@color/colorDarkerGray" />
+
+                    <Button
+                        android:id="@+id/btn_capacity6"
+                        android:layout_height="30dp"
+                        android:layout_marginRight="1dp"
+                        android:layout_marginBottom="1dp"
+                        android:layout_weight="1"
+                        android:background="@android:color/white"
+                        android:text="300cc"
+                        android:textColor="@color/colorDarkerGray" />
+
+                    <Button
+                        android:id="@+id/btn_capacity7"
+                        android:layout_height="30dp"
+                        android:layout_marginBottom="1dp"
+                        android:layout_weight="1"
+                        android:background="@android:color/white"
+                        android:text="300cc"
+                        android:textColor="@color/colorDarkerGray" />
+
+                    <Button
+                        android:id="@+id/btn_capacity8"
+                        android:layout_height="30dp"
+                        android:layout_marginHorizontal="1dp"
+                        android:layout_marginBottom="1dp"
+                        android:layout_weight="1"
+                        android:background="@android:color/white"
+                        android:text="300cc"
+                        android:textColor="@color/colorDarkerGray" />
+
+                </TableRow>
+            </TableLayout>
+
+            <android.support.v4.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="16dp">
+
+                <LinearLayout
+                    android:id="@+id/person_properties"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rv_add_history"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:overScrollMode="never" />
+                </LinearLayout>
+
+            </android.support.v4.widget.NestedScrollView>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginVertical="30dp"
+                android:background="@drawable/back_rect_black2"
+                android:paddingHorizontal="40dp"
+                android:text="@string/add_finish"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
         </LinearLayout>
-    </android.support.constraint.ConstraintLayout>
+
+    </LinearLayout>
 </ScrollView>

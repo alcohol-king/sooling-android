@@ -4,7 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".activity.login.GlobalApplication"
@@ -16,19 +16,22 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
         <meta-data
-        android:name="com.kakao.sdk.AppKey"
-        android:value="@string/kakao_app_key" />
+            android:name="com.kakao.sdk.AppKey"
+            android:value="@string/kakao_app_key" />
 
         <activity android:name=".activity.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
+                <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.LAUNCHER" />
+
+                <data android:scheme="@string/kakao_scheme"
+                    android:host="@string/kakaolink_host" />
             </intent-filter>
         </activity>
 
         <activity android:name=".activity.wiki.WikiActivity" />
-        <activity android:name=".activity.wiki.WikiDetailActivity"/>
+        <activity android:name=".activity.wiki.WikiDetailActivity" />
         <activity android:name="com.sooling.sooling.activity.add_drink.AddHistoryActivity" />
         <activity android:name=".activity.calendar.CalendarActivity" />
         <activity android:name=".activity.setting.SettingActivity" />

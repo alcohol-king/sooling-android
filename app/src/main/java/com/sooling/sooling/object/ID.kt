@@ -1,4 +1,4 @@
-package com.sooling.sooling.model
+package com.sooling.sooling.`object`
 
 import android.support.annotation.IdRes
 import android.view.View

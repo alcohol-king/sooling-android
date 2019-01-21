@@ -9,13 +9,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
+        <ImageView
             android:id="@+id/tv_main_title"
-            android:layout_width="wrap_content"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="19dp"
-            android:text="@string/main_title"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="7dp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/logo"
             android:textColor="@android:color/black"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -38,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_alignBaseline="@+id/tv_main_title"
             android:layout_alignParentEnd="true"
-            android:layout_marginRight="25dp"
+            android:layout_marginRight="15dp"
             android:background="@android:color/transparent"
             android:drawableLeft="@drawable/ic_settings"
             android:paddingLeft="10dp"
@@ -66,7 +67,7 @@
                 android:layout_marginLeft="25dp"
                 android:background="@drawable/back_circle_black2"
                 android:scaleType="fitCenter"
-                android:src="@drawable/icon_2x" />
+                android:src="@drawable/icon" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_main_index"

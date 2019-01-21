@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.TextView
 import com.sooling.sooling.R
 import kotlinx.android.synthetic.main.activity_setting.*
+import kotlinx.android.synthetic.main.toolbar.*
 import org.jetbrains.anko.startActivity
 
 
@@ -23,6 +24,7 @@ class SettingActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun initView() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        toolbar_title.text = getString(R.string.all_setting)
 
         // 추천 버튼에 색상 지정
         val span = SpannableStringBuilder(getString(R.string.setting_friend))
@@ -30,12 +32,14 @@ class SettingActivity : AppCompatActivity(), View.OnClickListener {
                 , 4, 9, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
         btn_recommend.setText(span, TextView.BufferType.SPANNABLE)
 
+        ib_back.setOnClickListener(this)
         btn_profile.setOnClickListener(this)
         btn_card.setOnClickListener(this)
     }
 
     override fun onClick(view: View?) {
         when (view?.id) {
+            R.id.ib_back -> finish()
             R.id.btn_profile -> startActivity<SettingProfileActivity>()
             R.id.btn_card -> startActivity<SettingCardActivity>()
         }

@@ -37,7 +37,16 @@ class GetCardData(val context: Context) {
 
     fun getDrinkIcon(type: String): Int =
             when (type) {
-                beer -> R.drawable.beer_2x
-                else -> R.drawable.beer_2x
+                beer -> R.drawable.img_beer
+                else -> R.drawable.img_beer
             }
+
+    fun getCapacityArray(type: String): Array<String> = context.resources.getStringArray(
+            when (type) {
+                "맥주" -> R.array.beer_capacity
+                "와인" -> R.array.wine_capacity
+                "소주" -> R.array.soju_capacity
+                "막걸리" -> R.array.makeolli_capacity
+                else -> R.array.beer_capacity
+            })
 }

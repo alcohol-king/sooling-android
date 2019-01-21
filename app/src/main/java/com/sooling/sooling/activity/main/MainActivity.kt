@@ -1,9 +1,12 @@
 package com.sooling.sooling.activity.main
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Bundle
+import android.support.v4.app.ActivityCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.LinearSnapHelper
+import android.support.v7.widget.PagerSnapHelper
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.bumptech.glide.Glide
@@ -16,12 +19,16 @@ import com.sooling.sooling.activity.calendar.CalendarActivity
 import com.sooling.sooling.activity.setting.SettingActivity
 import com.sooling.sooling.adapter.CardListAdapter
 import com.sooling.sooling.adapter.IndicatorAdapter
+import com.sooling.sooling.custom_view.ShareDialog
 import com.sooling.sooling.util.RecyclerItemClickListener
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.toast
 
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
+    val requestPermission = 0
+    var index = 0
     lateinit var adapter: CardListAdapter
     var cardList = listOf<DrinkCard>(
             DrinkCard("BEER", "500cc까지는 즐기면서"),
@@ -35,11 +42,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(R.layout.activity_main)
 
         initView()
+        askForPermission()
     }
 
     private fun initView() {
         Glide.with(applicationContext)
-                .load(R.drawable.icon_2x)
+                .load(R.drawable.icon)
                 .apply(RequestOptions().circleCrop())
                 .into(iv_main_profile)
 
@@ -58,17 +66,16 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         )
 
         // 카드 리스트에 indicator 추가
-        val snapHelper = LinearSnapHelper()
+        val snapHelper = PagerSnapHelper()
         snapHelper.attachToRecyclerView(rv_main_card)
         rv_main_card.onFlingListener = snapHelper
 
         rv_main_card.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
-                indexAdapter.setItemIndex(
-                        (recyclerView.layoutManager as LinearLayoutManager)
-                                .findFirstVisibleItemPosition()
-                )
+                index = (recyclerView.layoutManager as LinearLayoutManager)
+                        .findFirstVisibleItemPosition()
+                indexAdapter.setItemIndex(index)
             }
         })
 
@@ -95,6 +102,30 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             R.id.btn_main_wiki -> startActivity<WikiActivity>()
             R.id.btn_main_setting -> startActivity<SettingActivity>()
             R.id.btn_main_share -> {
+                ShareDialog(this, cardList[index], "유우미").show()
+            }
+        }
+    }
+
+    // 권한 요청
+    private fun askForPermission() {
+        val permissions = arrayOf(android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.CAMERA)
+        ActivityCompat.requestPermissions(this, permissions, requestPermission)
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        if (requestCode == requestPermission) {
+            for (i in permissions.indices) {
+                if (permissions[i] == Manifest.permission.WRITE_EXTERNAL_STORAGE ||
+                        permissions[i] == Manifest.permission.CAMERA) {
+
+                    if (grantResults[i] != PackageManager.PERMISSION_GRANTED) {
+                        toast(R.string.permission_denied_msg)
+                        finish()
+                    }
+                }
             }
         }
     }

@@ -1,11 +1,12 @@
 <resources>
     <string name="app_name">옐로카드</string>
     <string name="app_version">1.0</string>
+  
     <string name="kakao_app_key">a879fa1e1d92450279113db589d86fb3</string>
-    <!--<string name="kakao_app_key">0fc351d8cfedb4dc194d5c026a59b306</string>-->
-    <!--<string name="kakao_link_key">0fc351d8cfedb4dc194d5c026a59b306</string>-->
-    <!--<string name="kakao_scheme">kakao0fc351d8cfedb4dc194d5c026a59b306</string>-->
-    <!--<string name="kakaolink_host">kakaolink</string>-->
+    <!--<string name="kakao_app_key">e0087eedd7e6c45e14a10a64d66a4e02</string>-->
+    <string name="kakao_scheme">kakaoe0087eedd7e6c45e14a10a64d66a4e02</string>
+    <string name="kakaolink_host">kakaolink</string>
+
 
     <string name="all_ok">확인</string>
     <string name="all_cancel">취소</string>
@@ -33,10 +34,10 @@
     <string name="main_msg5">함께 즐길 수 있어요.</string>
 
     <string name="add_msg">즐거운 술자리를 가졌나요?\n스텝에 맞게 입력해 주시면, 기록을 볼 수 있어요!</string>
-    <string name="add_question1">언제 마셨어?</string>
-    <string name="add_question2">누구랑 마셨어?</string>
-    <string name="add_question2_msg">몇 명의 친구와 즐거운 술자리를 가졌나요?</string>
-    <string name="add_question3">얼마나 마셨어?</string>
+    <string name="add_question1">언제 마셨나요?</string>
+    <string name="add_question2">누구와 마셨나요?</string>
+    <string name="add_question3">어떤 술을 얼마나 먹었나요?</string>
+    <string name="add_finish">등록하기</string>
 
     <string name="setting_title1">버전 정보</string>
     <string name="setting_title2">개인 정보</string>
@@ -57,6 +58,65 @@
     <string name="setting_state_msg">상태 메세지를 입력해주세요.</string>
     <string name="setting_label">라벨 지정</string>
     <string name="setting_label_msg">주량라벨은 옐로카드만의 기준에 맞추어 보여집니다.\n최소 하나의 라벨을 지정해주세요 :)</string>
+
+    <string name="share_msg">Let&quot;s Share it.</string>
+    <string name="share_kakao_title">옐로카드 설치하기</string>
+    <string name="share_kakao_msg">님의 카드입니다!</string>
+    <string name="share_intro">나만의 옐로카드를 공유해보세요 :)</string>
+    <string name="share_download">이미지로 저장하기</string>
+    <string name="share_kakao">카톡으로 공유하기</string>
+    <string name="download_success">카드 저장 완료</string>
+
+    <string name="label">Beer\n3.0</string>
+    <string name="err_img_upload">카드 공유 중 오류가 발생했습니다. 다시 시도해주세요.</string>
+    <string name="err_img_save">카드 저장 중 오류가 발생했습니다. 다시 시도해주세요.</string>
+    <string name="permission_denied_msg">접근 권한 허가가 필요합니다.</string>
+
+    <string name="capacity_msg">옐로카드만의 주량기준에 대해 알려드립니다.\n해당 기준은 sooling team의 주관적인 기준입니다.</string>
+    <string name="capacity_more">더 많이!</string>
+    <string-array name="beer_capacity">
+        <item>300cc</item>
+        <item>500cc</item>
+        <item>1000cc</item>
+        <item>1500cc</item>
+        <item>2000cc</item>
+        <item>3000cc</item>
+        <item>5000cc</item>
+        <item>더 많이!</item>
+    </string-array>
+
+    <string-array name="soju_capacity">
+        <item>반 병(3잔)</item>
+        <item>1병</item>
+        <item>2병</item>
+        <item>3병</item>
+        <item>4병</item>
+        <item>5병</item>
+        <item>6병</item>
+        <item>더 많이!</item>
+    </string-array>
+
+    <string-array name="wine_capacity">
+        <item>1잔</item>
+        <item>2잔</item>
+        <item>3잔</item>
+        <item>4잔</item>
+        <item>5잔</item>
+        <item>6잔</item>
+        <item>7잔</item>
+        <item>더 많이!</item>
+    </string-array>
+
+    <string-array name="makeolli_capacity">
+        <item>반 병(2사발)</item>
+        <item>1병</item>
+        <item>2병</item>
+        <item>3병</item>
+        <item>4병</item>
+        <item>5병</item>
+        <item>6병</item>
+        <item>더 많이!</item>
+    </string-array>
 </resources>
 
 
