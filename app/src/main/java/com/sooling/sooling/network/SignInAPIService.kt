@@ -8,7 +8,7 @@ import com.sooling.sooling.`object`.SignIn
 import io.reactivex.Observable
 import retrofit2.Call
 
-interface SignUpAPIService{
+interface SignInAPIService{
 
     @POST("signin")
     fun resisterUser(@Body signIn: SignIn): Observable<Response<SignIn>>

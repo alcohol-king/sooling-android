@@ -10,7 +10,7 @@ import com.sooling.sooling.activity.main.MainActivity
 
 class SplashActivity : AppCompatActivity() {
 
-    private val SPLASH_DISPLAY_LENGTH = 1000
+    private val SPLASH_DISPLAY_LENGTH = 2000
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,6 +23,4 @@ class SplashActivity : AppCompatActivity() {
 
         }, SPLASH_DISPLAY_LENGTH.toLong())
     }
-
-
 }

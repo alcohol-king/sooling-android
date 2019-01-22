@@ -4,18 +4,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.text.TextUtils
-import android.util.Log.d
-import android.util.Log.v
 import android.view.View
-import android.widget.Toast
 import com.sooling.sooling.R
 import kotlinx.android.synthetic.main.activity_signup.*
 import org.jetbrains.anko.toast
 import android.text.Editable
 import android.text.TextWatcher
-import com.sooling.sooling.network.RetrofitBuilder
-import com.sooling.sooling.network.SignUpAPIService
-import com.google.gson.JsonArray
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.kakao.auth.Session
 import com.sooling.sooling.`object`.SignIn
 import com.sooling.sooling.activity.main.MainActivity
@@ -29,69 +25,72 @@ import javax.net.ssl.HttpsURLConnection
 class SignUpActivity : AppCompatActivity() {
 
     internal lateinit var mCompositeDisposable: CompositeDisposable
-
-//    private var mCompositeDisposable: CompositeDisposable? = null
+    private var imageURL:String? = null
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup)
 
-        start_app.visibility = View.VISIBLE
+        val intent = intent
 
-        var userName = user_name.text.toString()
-        var userMessage = user_message.text.toString()
+        if(intent.hasExtra("imageURL")) {
 
+            imageURL = intent.getStringExtra("imageURL")
+            Glide.with(this)
+                    .load(imageURL)
+                    .apply(RequestOptions().circleCrop())
+                    .into(signup_profile)
 
-//        user_name.addTextChangedListener(object : TextWatcher {
-//
+        } else {
+            toast("전달된 이미지가 없습니다.")
+        }
+
+        user_name.addTextChangedListener(object : TextWatcher {
+
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+
+                var userName = user_name.text.toString()
+                var userMessage = user_message.text.toString()
+
+                if(!TextUtils.isEmpty(userName) && !TextUtils.isEmpty(userMessage)){
+                    start_app.visibility = View.VISIBLE
+                }
+                else {
+                    start_app.visibility = View.GONE
+                }
+
+            }
+
+            override fun afterTextChanged(s: Editable) {}
+        })
+
+        user_message.addTextChangedListener(object : TextWatcher {
+
 //            var userName = user_name.text.toString()
 //            var userMessage = user_message.text.toString()
-//
-//            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
-//
-//                if(!TextUtils.isEmpty(userName) && !TextUtils.isEmpty(userMessage)){
-//                    start_app.visibility = View.VISIBLE
-//                }
-//                else {
-//                    start_app.visibility = View.GONE
-//                }
-//            }
-//
-//            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-//
-//                if(TextUtils.isEmpty(userMessage)){
-//                    start_app.visibility = View.GONE
-//                }
-//                else {
-//                    start_app.visibility = View.VISIBLE
-//                }
-//            }
-//
-//            override fun afterTextChanged(s: Editable) {
-//                //입력이 끝났을 때
-//            }
-//        })
-//
-//        user_message.addTextChangedListener(object : TextWatcher {
-//
-//            var userName = user_name.text.toString()
-//            var userMessage = user_message.text.toString()
-//
-//            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-//
-//            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-//                if(TextUtils.isEmpty(userName)){
-//                    start_app.visibility = View.GONE
-//                }
-//                else {
-//                    start_app.visibility = View.VISIBLE
-//                }
-//            }
-//
-//            override fun afterTextChanged(s: Editable) {
-//                //입력이 끝났을 때
-//            }
-//        })
+
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+
+                var userName = user_name.text.toString()
+                var userMessage = user_message.text.toString()
+
+                if(!TextUtils.isEmpty(userName) && !TextUtils.isEmpty(userMessage)){
+                    start_app.visibility = View.VISIBLE
+                }
+                else {
+                    start_app.visibility = View.GONE
+                }
+
+            }
+
+            override fun afterTextChanged(s: Editable) {
+                //입력이 끝났을 때
+            }
+        })
 
 
         start_app.setOnClickListener {
@@ -118,7 +117,6 @@ class SignUpActivity : AppCompatActivity() {
                         }
                     })
                     .subscribe())
-
         }
 
     }
