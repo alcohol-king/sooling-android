@@ -7,7 +7,7 @@
 
     <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="340dp"
+            android:layout_height="321dp"
             android:background="#ffe421">
 
         <ImageView
@@ -15,7 +15,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="40dp"
-                android:layout_marginTop="90dp"
+                android:layout_marginTop="71dp"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 android:src="@drawable/logo_white_img"/>
@@ -38,6 +38,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="15sp"
                 android:textColor="#000000"
+                android:lineSpacingExtra="1dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="40dp"
                 android:text="옐로카드에서 쓸 \n이름과 주량상태말을 등록하면, \n더 재밌게 이용할 수 있어요."
@@ -46,11 +47,13 @@
     </android.support.constraint.ConstraintLayout>
     
     <ImageView
-            android:id="@+id/sigunup_profile"
+            android:id="@+id/signup_profile"
             android:layout_width="112dp"
             android:layout_height="112dp"
             android:layout_marginLeft="31dp"
-            android:layout_marginTop="284dp"
+            android:layout_marginTop="265dp"
+            android:padding="5dp"
+            android:background="@drawable/oval_signup_profile_background"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
@@ -60,15 +63,15 @@
             android:layout_height="50dp"
             android:layout_marginTop="41dp"
             android:layout_marginLeft="37dp"
-            android:background="#eaeaea"
+            android:background="@drawable/round_conner"
             android:hint="옐로카드에서 쓸 이름을 작성해 주세요."
             android:maxLength="5"
             android:textColor="#000000"
             android:textSize="14sp"
             android:paddingLeft="26dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sigunup_profile"
-            />
+            app:layout_constraintTop_toBottomOf="@+id/signup_profile"
+    />
 
     <EditText
             android:id="@+id/user_message"
@@ -76,7 +79,7 @@
             android:layout_height="50dp"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="37dp"
-            android:background="#eaeaea"
+            android:background="@drawable/round_conner"
             android:hint="나만의 음주 스타일을 자유롭게 써주세요."
             android:maxLength="20"
             android:textColor="#000000"
@@ -108,8 +111,7 @@
                     android:textColor="#ffffff"
                     android:text="다 끝났어요!"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-            />
+                    app:layout_constraintTop_toTopOf="parent"/>
 
             <TextView
                     android:id="@+id/finish_text2"
@@ -119,8 +121,7 @@
                     android:textColor="#ffe421"
                     android:text="옐로카드 시작하기"
                     android:layout_marginLeft="3dp"
-                    app:layout_constraintStart_toEndOf="@+id/finish_text1"
-            />
+                    app:layout_constraintStart_toEndOf="@+id/finish_text1"/>
 
         </android.support.constraint.ConstraintLayout>
 

@@ -11,6 +11,7 @@ import com.kakao.auth.Session
 import com.sooling.sooling.R
 import kotlinx.android.synthetic.main.activity_login.*
 import android.util.Log
+import android.util.Log.d
 import android.view.View
 import com.kakao.auth.ISessionCallback
 import com.kakao.network.ErrorResult
@@ -19,6 +20,7 @@ import com.kakao.usermgmt.callback.MeV2ResponseCallback
 import com.kakao.usermgmt.response.MeV2Response
 import com.kakao.util.exception.KakaoException
 import com.sooling.sooling.activity.signup.SignUpActivity
+import org.jetbrains.anko.toast
 
 class LoginActivity : AppCompatActivity() {
 
@@ -42,9 +44,9 @@ class LoginActivity : AppCompatActivity() {
             btn_kakao_login.performClick()
         }
 
-        Log.d("@@token", "토큰큰 : " + Session.getCurrentSession().tokenInfo.accessToken)
-        Log.d("@@token", "토큰큰 리프레쉬토큰 : " + Session.getCurrentSession().tokenInfo.refreshToken)
-        Log.d("@@token", "토큰큰 파이어데이트 : " + Session.getCurrentSession().tokenInfo.remainingExpireTime)
+        Log.d("@@token", "토큰 : " + Session.getCurrentSession().tokenInfo.accessToken)
+        Log.d("@@token", "토큰 리프레쉬토큰 : " + Session.getCurrentSession().tokenInfo.refreshToken)
+        Log.d("@@token", "토큰 파이어데이트 : " + Session.getCurrentSession().tokenInfo.remainingExpireTime)
 
     }
 
@@ -68,7 +70,7 @@ class LoginActivity : AppCompatActivity() {
 
             val keys = ArrayList<String>()
             keys.add("properties.nickname")
-
+            keys.add("properties.profile_image")
 
             UserManagement.getInstance().me(keys, object : MeV2ResponseCallback() {
 
@@ -83,21 +85,22 @@ class LoginActivity : AppCompatActivity() {
 
                 override fun onSuccess(response: MeV2Response?) {
                     if (response != null) {
-//                    Log.e("UserProfile", response.profileImagePath)
-                        Log.d("@@User nickname", "" + response.nickname)
-                        Log.d("@@User id", "" + response.id)
+                        d("@@User nickname", "" + response.nickname)
+                        d("@@User id", "" + response.id)
+                        d("@@User Image URL", ""+response.profileImagePath)
+                        redirectSignupActivity(response.profileImagePath)
                     }
-
-                    redirectSignupActivity()
-
+                    else
+                        toast("서버에 문제가 생겨 접속에 실패하였습니다.")
                 }
             })
         }
     }
 
 
-    protected fun redirectSignupActivity() {
+    protected fun redirectSignupActivity(imageURL : String) {
         val intent = Intent(this, SignUpActivity::class.java)
+        intent.putExtra("imageURL",imageURL)
         this@LoginActivity.startActivity(intent)
         this@LoginActivity.finish()
     }
@@ -105,7 +108,7 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (Session.getCurrentSession().handleActivityResult(requestCode, resultCode, data)) {
-            return;
+            return
         }
 
         super.onActivityResult(requestCode, resultCode, data);
