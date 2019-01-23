@@ -10,11 +10,14 @@ import retrofit2.Response
 import javax.net.ssl.HttpsURLConnection
 
 class SignInService private constructor() {
-    private var mService: SignInAPIService? = null
+//    private var mService: SignInAPIService? = null
+    private var mService: SignInAPIService? = APIUtiles.getSignInService
 
     private fun SignInService() {
-        mService = RetrofitClient.getClient("https://yellowcard-api.herokuapp.com/").create(SignInAPIService::class.java)
+//        mService = RetrofitClient.getClient("https://yellowcard-api.herokuapp.com/").create(SignInAPIService::class.java)
+//        mService = APIUtiles.getSignInService
     }
+
 
     fun resisterUser(signIn: SignIn): Observable<Response<SignIn>> {
         return mService!!.resisterUser(signIn).subscribeOn(Schedulers.io())
