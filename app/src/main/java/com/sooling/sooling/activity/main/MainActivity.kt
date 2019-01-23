@@ -8,19 +8,21 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.PagerSnapHelper
 import android.support.v7.widget.RecyclerView
+import android.util.Log.d
 import android.view.View
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.sooling.sooling.R
 import com.sooling.sooling.`object`.DrinkCard
-import com.sooling.sooling.activity.wiki.WikiActivity
 import com.sooling.sooling.activity.add_drink.AddHistoryActivity
 import com.sooling.sooling.activity.calendar.CalendarActivity
 import com.sooling.sooling.activity.setting.SettingActivity
+import com.sooling.sooling.activity.wiki.WikiActivity
 import com.sooling.sooling.adapter.CardListAdapter
 import com.sooling.sooling.adapter.IndicatorAdapter
 import com.sooling.sooling.custom_view.ShareDialog
 import com.sooling.sooling.util.RecyclerItemClickListener
+import com.sooling.sooling.util.UserDataManager
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
@@ -46,10 +48,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun initView() {
+        val user = UserDataManager.getInstance(this).getUserInfo()
+        d("token", user.token)
         Glide.with(applicationContext)
-                .load(R.drawable.icon)
+                .load(user.imgUrl)
                 .apply(RequestOptions().circleCrop())
                 .into(iv_main_profile)
+
+        tv_main_name.text = user.name
+        tv_main_msg.text = user.msg
 
         adapter = CardListAdapter(this, cardList)
         rv_main_card.adapter = adapter

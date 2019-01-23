@@ -12,7 +12,7 @@ import com.sooling.sooling.model.GetCardData
 import kotlinx.android.synthetic.main.item_add_history.view.*
 
 
-class HistoryListAdapter(val context: Context, val strList: ArrayList<String>)
+class HistoryListAdapter(val context: Context, var strList: ArrayList<String>)
     : RecyclerView.Adapter<HistoryListAdapter.HistoryListViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, type: Int): HistoryListViewHolder {
@@ -20,9 +20,7 @@ class HistoryListAdapter(val context: Context, val strList: ArrayList<String>)
         return HistoryListViewHolder(viewGroup)
     }
 
-    override fun getItemCount(): Int {
-        return strList.size
-    }
+    override fun getItemCount(): Int = strList.size
 
     override fun onBindViewHolder(holder: HistoryListViewHolder, position: Int) = holder.bind(position)
 
@@ -34,6 +32,25 @@ class HistoryListAdapter(val context: Context, val strList: ArrayList<String>)
     fun deleteItem(position: Int) {
         strList.removeAt(position)
         notifyDataSetChanged()
+    }
+
+    fun setItem(position: Int, item: String) {
+        strList[position] = item
+        notifyDataSetChanged()
+    }
+
+    fun setPeopleCount(count: Int) {
+        strList.forEachIndexed { index, s ->
+            val peopleCount = if (count == 0) "혼자서" else "${count}명과"
+            strList[index] = peopleCount + s.substring(s.indexOf("명"), s.length)
+        }
+
+        notifyDataSetChanged()
+    }
+
+    fun getItemIndex(type: String): Int {
+        strList.forEachIndexed { index, s -> if (s.contains(type)) return index }
+        return -1
     }
 
     inner class HistoryListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

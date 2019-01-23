@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import com.sooling.sooling.R
 import com.sooling.sooling.activity.login.LoginActivity
 import com.sooling.sooling.activity.main.MainActivity
+import com.sooling.sooling.util.UserDataManager
 
 class SplashActivity : AppCompatActivity() {
 
@@ -17,7 +18,13 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
 
         Handler().postDelayed({
-            val mainIntent = Intent(this@SplashActivity, LoginActivity::class.java)
+            val mainIntent = Intent(this@SplashActivity,
+                    if (UserDataManager.getInstance(this).getToken() == "none_key")
+                        LoginActivity::class.java
+                    else
+                        MainActivity::class.java
+            )
+
             this@SplashActivity.startActivity(mainIntent)
             this@SplashActivity.finish()
 

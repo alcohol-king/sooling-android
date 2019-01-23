@@ -1,6 +1,7 @@
 package com.sooling.sooling.model
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import com.sooling.sooling.R
 
 class GetCardData(val context: Context) {
@@ -16,6 +17,15 @@ class GetCardData(val context: Context) {
                 soju -> R.color.colorSoju
                 makgeolli -> R.color.colorMakgeolli
                 else -> R.color.colorGray
+            }
+
+    fun getDrawable(type: String): Int =
+            when (type) {
+                beer -> R.drawable.back_rect_yellow2
+                soju -> R.drawable.back_rect_green
+                wine -> R.drawable.back_rect_pink
+                makgeolli -> R.drawable.back_rect_blue
+                else -> R.drawable.back_rect_yellow2
             }
 
     fun getFirstMsg(type: String): String =

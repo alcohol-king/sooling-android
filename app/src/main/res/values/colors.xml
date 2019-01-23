@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#D81B60</color>
     <color name="colorBeer">#ffe421</color>
-    <color name="colorDialog">#5afff0c0</color>
+    <color name="colorDialog">#5affffff</color>
     <color name="colorGray">#eaeaea</color>
     <color name="colorDarkerGray">#666666</color>
     <color name="colorSoju">#7aec50</color>

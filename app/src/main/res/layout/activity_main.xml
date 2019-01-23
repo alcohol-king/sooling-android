@@ -29,6 +29,7 @@
             android:layout_toLeftOf="@id/btn_main_setting"
             android:background="@android:color/transparent"
             android:drawableLeft="@drawable/ic_share"
+            android:foreground="?android:attr/selectableItemBackground"
             android:paddingLeft="10dp"
             android:text="@string/all_share"
             android:textSize="12sp" />
@@ -42,6 +43,7 @@
             android:layout_marginRight="15dp"
             android:background="@android:color/transparent"
             android:drawableLeft="@drawable/ic_settings"
+            android:foreground="?android:attr/selectableItemBackground"
             android:paddingLeft="10dp"
             android:text="@string/all_setting"
             android:textSize="12sp" />
@@ -163,7 +165,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/tv_main_intro"
+                android:id="@+id/tv_main_msg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="맥주는 역시 튀긴 감자랑 함께해야지"
@@ -187,6 +189,7 @@
                 android:layout_width="53dp"
                 android:layout_height="53dp"
                 android:background="@drawable/back_circle_black"
+                android:foreground="?android:attr/selectableItemBackgroundBorderless"
                 android:src="@drawable/ic_pencil" />
 
             <TextView
@@ -212,6 +215,7 @@
                 android:layout_width="53dp"
                 android:layout_height="53dp"
                 android:background="@drawable/back_circle_black"
+                android:foreground="?android:attr/selectableItemBackgroundBorderless"
                 android:src="@drawable/ic_calendar" />
 
             <TextView
@@ -238,6 +242,7 @@
                 android:layout_width="53dp"
                 android:layout_height="53dp"
                 android:background="@drawable/back_circle_black"
+                android:foreground="?android:attr/selectableItemBackgroundBorderless"
                 android:src="@drawable/ic_book" />
 
             <TextView

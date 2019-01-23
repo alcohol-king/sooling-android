@@ -1,131 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <android.support.constraint.ConstraintLayout
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="321dp"
             android:background="#ffe421">
 
-        <ImageView
+            <ImageView
                 android:id="@+id/signup_logo"
-                android:layout_width="wrap_content"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="40dp"
                 android:layout_marginTop="71dp"
-                app:layout_constraintTop_toTopOf="parent"
+                android:src="@drawable/logo_white_img"
                 app:layout_constraintStart_toStartOf="parent"
-                android:src="@drawable/logo_white_img"/>
-        
-        <TextView
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
                 android:id="@+id/signup_text1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="9dp"
                 android:layout_marginLeft="40dp"
-                app:layout_constraintTop_toBottomOf="@+id/signup_logo"
-                app:layout_constraintStart_toStartOf="parent"
-                android:textSize="26sp"
+                android:text="가입을 환영해요"
                 android:textColor="#000000"
-                android:text="가입을 환영해요"/>
-        
-        <TextView
+                android:textSize="26sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/signup_logo" />
+
+            <TextView
                 android:id="@+id/signup_text2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="15sp"
-                android:textColor="#000000"
-                android:lineSpacingExtra="1dp"
-                android:layout_marginTop="20dp"
                 android:layout_marginLeft="40dp"
-                android:text="옐로카드에서 쓸 \n이름과 주량상태말을 등록하면, \n더 재밌게 이용할 수 있어요."
-                app:layout_constraintTop_toBottomOf="@+id/signup_text1"
-                app:layout_constraintStart_toStartOf="parent"/>
-    </android.support.constraint.ConstraintLayout>
-    
-    <ImageView
+                android:layout_marginTop="20dp"
+                android:lineSpacingExtra="1dp"
+                android:text="옐로카드에서 쓸 이름과 주량상태말을 등록하면, \n더 재밌게 이용할 수 있어요."
+                android:textColor="#000000"
+                android:textSize="15sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/signup_text1" />
+        </android.support.constraint.ConstraintLayout>
+
+        <ImageView
             android:id="@+id/signup_profile"
             android:layout_width="112dp"
             android:layout_height="112dp"
             android:layout_marginLeft="31dp"
             android:layout_marginTop="265dp"
-            android:padding="5dp"
             android:background="@drawable/oval_signup_profile_background"
+            android:padding="5dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
+        <EditText
             android:id="@+id/user_name"
             android:layout_width="286dp"
             android:layout_height="50dp"
-            android:layout_marginTop="41dp"
             android:layout_marginLeft="37dp"
+            android:layout_marginTop="41dp"
             android:background="@drawable/round_conner"
             android:hint="옐로카드에서 쓸 이름을 작성해 주세요."
             android:maxLength="5"
+            android:paddingLeft="26dp"
             android:textColor="#000000"
             android:textSize="14sp"
-            android:paddingLeft="26dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/signup_profile"
-    />
+            app:layout_constraintTop_toBottomOf="@+id/signup_profile" />
 
-    <EditText
+        <EditText
             android:id="@+id/user_message"
             android:layout_width="286dp"
             android:layout_height="50dp"
-            android:layout_marginTop="10dp"
             android:layout_marginLeft="37dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/round_conner"
             android:hint="나만의 음주 스타일을 자유롭게 써주세요."
             android:maxLength="20"
+            android:paddingLeft="26dp"
             android:textColor="#000000"
             android:textSize="14sp"
-            android:paddingLeft="26dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/user_name"
-    />
+            app:layout_constraintTop_toBottomOf="@+id/user_name" />
 
-    <FrameLayout
+        <FrameLayout
             android:id="@+id/start_app"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:background="#111111"
-            app:layout_constraintBottom_toBottomOf="parent"
             android:visibility="gone"
-            >
+            app:layout_constraintBottom_toBottomOf="parent">
 
-        <android.support.constraint.ConstraintLayout
+            <android.support.constraint.ConstraintLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center">
 
-            <TextView
+                <TextView
                     android:id="@+id/finish_text1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:textColor="#ffffff"
                     android:text="다 끝났어요!"
+                    android:textColor="#ffffff"
+                    android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
+                <TextView
                     android:id="@+id/finish_text2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:textColor="#ffe421"
-                    android:text="옐로카드 시작하기"
                     android:layout_marginLeft="3dp"
-                    app:layout_constraintStart_toEndOf="@+id/finish_text1"/>
+                    android:text="옐로카드 시작하기"
+                    android:textColor="#ffe421"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toEndOf="@+id/finish_text1" />
 
-        </android.support.constraint.ConstraintLayout>
+            </android.support.constraint.ConstraintLayout>
+        </FrameLayout>
 
-    </FrameLayout>
+    </android.support.constraint.ConstraintLayout>
 
-
-</android.support.constraint.ConstraintLayout>
+    <ProgressBar
+        android:id="@+id/progress_sign_up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:progressDrawable="@android:color/black"
+        android:visibility="invisible" />
+</FrameLayout>

@@ -106,6 +106,8 @@
             android:rowCount="2">
 
             <Button
+                android:id="@+id/btn_label_beer"
+                style="?android:attr/borderlessButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_marginRight="15dp"
                 android:layout_marginBottom="15dp"
@@ -120,6 +122,8 @@
                 android:textAllCaps="false" />
 
             <Button
+                android:id="@+id/btn_label_soju"
+                style="?android:attr/borderlessButtonStyle"
                 android:layout_width="wrap_content"
                 android:width="120dp"
                 android:height="56dp"
@@ -132,6 +136,8 @@
                 android:textAllCaps="false" />
 
             <Button
+                android:id="@+id/btn_label_wine"
+                style="?android:attr/borderlessButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_marginBottom="30dp"
                 android:width="120dp"
@@ -145,6 +151,8 @@
                 android:textAllCaps="false" />
 
             <Button
+                android:id="@+id/btn_label_makgeolli"
+                style="?android:attr/borderlessButtonStyle"
                 android:layout_width="wrap_content"
                 android:width="120dp"
                 android:height="56dp"

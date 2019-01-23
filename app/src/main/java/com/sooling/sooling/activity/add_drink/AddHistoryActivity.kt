@@ -22,10 +22,12 @@ class AddHistoryActivity : AppCompatActivity(), View.OnClickListener {
     var capacityStrs = Array(8) { "" }
     var drinkBtnIndex = arrayListOf(-1, -1, -1, -1)
 
+    var count = 1
     val c = Calendar.getInstance()
     var year = c.get(Calendar.YEAR)
     var month = c.get(Calendar.MONTH)
     var day = c.get(Calendar.DAY_OF_MONTH)
+    lateinit var adapter: HistoryListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,7 +52,7 @@ class AddHistoryActivity : AppCompatActivity(), View.OnClickListener {
         btn_add_date.text = getDateStr(year, month, day)
 
         val strList = arrayListOf<String>()
-        val adapter = HistoryListAdapter(this, strList)
+        adapter = HistoryListAdapter(this, strList)
         rv_add_history.adapter = adapter
         rv_add_history.layoutManager = LinearLayoutManager(
                 this, LinearLayoutManager.VERTICAL, false
@@ -68,19 +70,17 @@ class AddHistoryActivity : AppCompatActivity(), View.OnClickListener {
                     drinkBtns[index].setTextColor(Color.WHITE)
                     drinkBtns[index].setBackgroundResource(R.drawable.back_rect_black2)
 
-                    // 술 용량 버튼 초기화
-                    capacityBtns[drinkIndex].setBackgroundColor(Color.WHITE)
-                    capacityBtns[drinkIndex].setTextColor(resources.getColor(R.color.colorDarkerGray))
-
                     drinkIndex = index
                 }
 
                 capacityBtns.forEachIndexed { index, btn ->
                     btn.text = capacityStrs[index]
+                    btn.setBackgroundColor(Color.WHITE)
+                    btn.setTextColor(resources.getColor(R.color.colorDarkerGray))
 
                     if (index == drinkBtnIndex[drinkIndex]) {
-                        capacityBtns[drinkIndex].setBackgroundColor(Color.BLACK)
-                        capacityBtns[drinkIndex].setTextColor(Color.WHITE)
+                        btn.setBackgroundColor(Color.BLACK)
+                        btn.setTextColor(Color.WHITE)
                     }
                 }
             }
@@ -88,13 +88,18 @@ class AddHistoryActivity : AppCompatActivity(), View.OnClickListener {
 
         capacityBtns.forEachIndexed { index, btn ->
             btn.setOnClickListener {
-                capacityBtns[index].setBackgroundColor(Color.WHITE)
-                capacityBtns[index].setTextColor(resources.getColor(R.color.colorDarkerGray))
+                // 이전 아이템 선택 해제
+                if (drinkBtnIndex[drinkIndex] > -1) {
+                    capacityBtns[drinkBtnIndex[drinkIndex]].setBackgroundColor(Color.WHITE)
+                    capacityBtns[drinkBtnIndex[drinkIndex]].setTextColor(resources.getColor(R.color.colorDarkerGray))
+                }
 
                 btn.setTextColor(Color.WHITE)
                 btn.setBackgroundColor(Color.BLACK)
 
                 drinkBtnIndex[drinkIndex] = index
+
+                setHistoryList()
             }
         }
 
@@ -102,18 +107,30 @@ class AddHistoryActivity : AppCompatActivity(), View.OnClickListener {
         iv_minus.setOnClickListener(this)
         iv_plus.setOnClickListener(this)
         btn_add_date.setOnClickListener(this)
+        btn_add_finish.setOnClickListener(this)
+    }
+
+    fun setHistoryList() {
+        if (adapter.getItemIndex(drinkType) > -1) {
+            adapter.setItem(adapter.getItemIndex(drinkType), getHistoryStr())
+        } else {
+            adapter.addItem(getHistoryStr())
+        }
     }
 
     override fun onClick(view: View?) {
         when (view?.id) {
             R.id.ib_back -> finish()
-            R.id.iv_minus -> {
-                var count = tv_count.text.toString().toInt()
-                if (count > 0) tv_count.text = (--count).toString()
-            }
-            R.id.iv_plus -> {
-                var count = tv_count.text.toString().toInt()
-                tv_count.text = (++count).toString()
+            R.id.iv_minus, R.id.iv_plus -> {
+                count = tv_count.text.toString().toInt()
+
+                if (count > 0) {
+                    tv_count.text =
+                            if (view.id == R.id.iv_minus) (--count).toString()
+                            else (++count).toString()
+                }
+
+                adapter.setPeopleCount(count)
             }
             R.id.btn_add_date -> {
                 val datePicker = DatePickerDialog(this,
@@ -126,14 +143,17 @@ class AddHistoryActivity : AppCompatActivity(), View.OnClickListener {
 
                 datePicker.show()
             }
+            R.id.btn_add_finish -> {
+                finish()
+            }
         }
     }
 
     fun getDateStr(year: Int, month: Int, day: Int): String =
             "" + year + "년 " + (month + 1) + "월 " + day + "일"
 
-    fun getHistoryStr(people: Int): String {
-        val peopleCount = if (people > 0) "$people 명과" else "혼자서"
+    fun getHistoryStr(): String {
+        val peopleCount = if (count == 0) "혼자서" else "${count}명과"
 
         return "$peopleCount $drinkType ${capacityStrs[drinkBtnIndex[drinkIndex]]} 마셨어요."
     }
