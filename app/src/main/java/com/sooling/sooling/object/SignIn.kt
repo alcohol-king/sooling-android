@@ -9,6 +9,8 @@ data class SignIn(
     @SerializedName("status_message")
     var statusMessage: String,
     @SerializedName("user_name")
-    var userName: String
+    var userName: String,
+    @SerializedName("token")
+    var token: String
 
 )

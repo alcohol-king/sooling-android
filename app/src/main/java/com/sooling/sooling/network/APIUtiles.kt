@@ -8,4 +8,8 @@ object APIUtiles {
     val getSignInService: SignInAPIService
         get() = RetrofitClient.getClient(BASE_URL).create(SignInAPIService::class.java)
 
+    fun getDrinkService(accessToken: String): DrinkAPIService {
+        return RetrofitClient.getClientWithToken(BASE_URL, accessToken)!!.create(DrinkAPIService::class.java)
+    }
+
 }

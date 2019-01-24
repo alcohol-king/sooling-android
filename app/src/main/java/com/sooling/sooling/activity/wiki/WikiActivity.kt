@@ -4,13 +4,24 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
+import android.util.Log
+import android.util.Log.d
 import android.view.View
 import com.sooling.sooling.R
 import com.sooling.sooling.activity.wiki.adapter.WikiAdapter
 import com.sooling.sooling.model.DrinkWikiMain
+import com.sooling.sooling.service.DrinkService
+import com.sooling.sooling.util.UserDataManager
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_wiki.*
+import org.jetbrains.anko.toast
+import javax.net.ssl.HttpsURLConnection
 
 class WikiActivity : AppCompatActivity() {
+
+    internal lateinit var mCompositeDisposable: CompositeDisposable
 
     private var wikiList = arrayListOf<DrinkWikiMain>(
             DrinkWikiMain("소주", R.drawable.soju_img),
@@ -32,8 +43,26 @@ class WikiActivity : AppCompatActivity() {
 
         wikiAdapter.itemClick = object: WikiAdapter.ItemClick {
             override fun onClick(view: View, position: Int) {
-                val intent = Intent(this@WikiActivity, WikiDetailActivity::class.java)
-                startActivity(intent)
+
+                d("token",""+UserDataManager.getToken())
+
+                mCompositeDisposable = CompositeDisposable()
+
+                mCompositeDisposable.add(DrinkService.instance.getDrinkList()
+                        .subscribeOn(Schedulers.computation())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .doOnNext() { res ->
+                            if (res.code() == HttpsURLConnection.HTTP_OK) {
+                                toast("아직 작업중입니다...")
+                                Log.d("@@Drink Response", "" + res.body())
+
+                            } else{ }
+                        }
+                        .subscribe())
+
+//                val intent = Intent(this@WikiActivity, WikiDetailActivity::class.java)
+//                startActivity(intent)
+
             }
         }
 
