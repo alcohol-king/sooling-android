@@ -11,7 +11,7 @@ import retrofit2.http.Path
 interface DrinkAPIService{
 
     @GET("drinks")
-    fun getDrinkList(): Observable<List<Drink>>
+    fun getDrinkList(): Observable<Response<List<Drink>>>
 
     @GET("drinks/{drinkId}")
     fun getDrink(@Path("drinkId") drinkId : Long): Observable<List<Drink>>

@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
+import android.util.Log.d
 import android.view.View
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -22,12 +23,15 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_signup.*
 import org.jetbrains.anko.toast
 import javax.net.ssl.HttpsURLConnection
+import kotlin.math.sign
 
 
 class SignUpActivity : AppCompatActivity() {
 
     internal lateinit var mCompositeDisposable: CompositeDisposable
     private var imageURL: String = ""
+    private var userName = ""
+    private var userMessage = ""
 
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,6 +55,7 @@ class SignUpActivity : AppCompatActivity() {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+
                 var userName = user_name.text.toString()
                 var userMessage = user_message.text.toString()
 
@@ -59,16 +64,12 @@ class SignUpActivity : AppCompatActivity() {
                 } else {
                     start_app.visibility = View.GONE
                 }
-
             }
 
             override fun afterTextChanged(s: Editable) {}
         })
 
         user_message.addTextChangedListener(object : TextWatcher {
-
-//            var userName = user_name.text.toString()
-//            var userMessage = user_message.text.toString()
 
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
 
@@ -85,40 +86,51 @@ class SignUpActivity : AppCompatActivity() {
 
             }
 
-            override fun afterTextChanged(s: Editable) {
-                //입력이 끝났을 때
-            }
+            override fun afterTextChanged(s: Editable) {}
         })
 
+        //가입 버튼 클릭
         start_app.setOnClickListener {
             progress_sign_up.visibility = View.VISIBLE
             val token = Session.getCurrentSession().tokenInfo.accessToken
             val userName = user_name.text.toString()
             val userMessage = user_message.text.toString()
 
-            val signIn = SignIn(token, userName, userMessage)
+            val signIn = SignIn(token, userName, userMessage,"")
 
             mCompositeDisposable = CompositeDisposable()
+
             mCompositeDisposable.add(SignInService.instance.resisterUser(signIn)
                     .subscribeOn(Schedulers.computation())
                     .observeOn(AndroidSchedulers.mainThread())
                     .doOnNext() { res ->
                         if (res.code() == HttpsURLConnection.HTTP_OK) {
-                            toast("가입이 완료되었습니다!")
-                            UserDataManager.getInstance(this).saveUserInfo(User(
-                                    token, userName, imageURL, userMessage
-                            ))
 
-                            val intent = Intent(this@SignUpActivity, MainActivity::class.java)
-                            startActivity(intent)
-                            finish()
+                            toast("가입이 완료되었습니다!")
+                            d("@@SignIn Response",""+res.body())
+                            setUserInfo(res.body())
+
                         } else
                             toast("가입에 실패하였습니다.")
 
+                        //로딩 이미지
                         progress_sign_up.visibility = View.INVISIBLE
+
                     }
                     .subscribe())
         }
+    }
+
+    private fun setUserInfo(signIn: SignIn?) {
+        if (signIn != null) {
+            UserDataManager.getInstance(this).saveUserInfo(User(
+                    signIn.token, userName, imageURL, userMessage
+            ))
+        }
+
+        val intent = Intent(this@SignUpActivity, MainActivity::class.java)
+        startActivity(intent)
+        finish()
 
     }
 }
