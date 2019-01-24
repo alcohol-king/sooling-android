@@ -12,4 +12,8 @@ object APIUtiles {
         return RetrofitClient.getClientWithToken(BASE_URL, accessToken)!!.create(DrinkAPIService::class.java)
     }
 
+    fun getHistoryService(accessToken: String): HistoryAPIService {
+        return RetrofitClient.getClientWithToken(BASE_URL, accessToken)!!.create(HistoryAPIService::class.java)
+    }
+
 }

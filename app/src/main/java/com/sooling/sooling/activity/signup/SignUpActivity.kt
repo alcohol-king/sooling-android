@@ -108,7 +108,7 @@ class SignUpActivity : AppCompatActivity() {
 
                             toast("가입이 완료되었습니다!")
                             d("@@SignIn Response",""+res.body())
-                            setUserInfo(res.body())
+                            setUserInfo(res.body()!!.token,userName, imageURL, userMessage)
 
                         } else
                             toast("가입에 실패하였습니다.")
@@ -121,12 +121,10 @@ class SignUpActivity : AppCompatActivity() {
         }
     }
 
-    private fun setUserInfo(signIn: SignIn?) {
-        if (signIn != null) {
+    private fun setUserInfo(token:String, userName:String, imageURL:String, userMessage:String) {
             UserDataManager.getInstance(this).saveUserInfo(User(
-                    signIn.token, userName, imageURL, userMessage
+                    token, userName, imageURL, userMessage
             ))
-        }
 
         val intent = Intent(this@SignUpActivity, MainActivity::class.java)
         startActivity(intent)
