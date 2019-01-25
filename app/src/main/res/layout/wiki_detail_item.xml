@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:background="@drawable/wiki_detail_round_conner"
+        android:layout_width="320dp"
+        android:layout_height="146dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="6dp">
+
+    <ImageView
+            android:id="@+id/iv_drink"
+            android:layout_width="91dp"
+            android:layout_height="110dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginLeft="14dp"
+            android:elevation="5dp"
+            android:background="@drawable/wiki_detail_drink_round_conner"
+            android:padding="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+    
+    <TextView
+            android:id="@+id/tv_drink_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="14.6dp"
+            android:layout_marginTop="17dp"
+            android:text="카스 프레쉬"
+            android:textSize="14sp"
+            android:textColor="#000000"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/iv_drink"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+            android:id="@+id/tv_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:layout_marginLeft="14.6dp"
+            android:textSize="10sp"
+            android:textColor="#000000"
+            android:text="카스 프레쉬는 맛있다."
+            app:layout_constraintStart_toEndOf="@id/iv_drink"
+            app:layout_constraintTop_toBottomOf="@+id/tv_drink_name"/>
+
+    <TextView
+            android:id="@+id/tv_proof"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="14.6dp"
+            android:layout_marginBottom="16dp"
+            android:textColor="#9b9b9b"
+            android:textStyle="bold"
+            android:textSize="12sp"
+            android:text="도수 :"
+            app:layout_constraintStart_toEndOf="@id/iv_drink"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <TextView
+            android:id="@+id/tv_drink_proof"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="2dp"
+            android:textColor="#9b9b9b"
+            android:textSize="12sp"
+            android:text="4.5도"
+            app:layout_constraintStart_toEndOf="@id/tv_proof"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <TextView
+            android:id="@+id/tv_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:layout_marginBottom="16dp"
+            android:textColor="#9b9b9b"
+            android:textStyle="bold"
+            android:textSize="12sp"
+            android:text="가격 :"
+            app:layout_constraintStart_toEndOf="@id/tv_drink_proof"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <TextView
+            android:id="@+id/tv_drink_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="2dp"
+            android:textColor="#9b9b9b"
+            android:textSize="12sp"
+            android:text="2700원"
+            app:layout_constraintStart_toEndOf="@id/tv_price"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+    
+    <ImageView
+            android:id="@+id/iv_like"
+            android:layout_width="8.4dp"
+            android:layout_height="7.7dp"
+            android:layout_marginRight="36.6dp"
+            android:layout_marginBottom="21dp"
+            android:src="@drawable/like_img"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+    
+    <TextView
+            android:id="@+id/tv_like_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="12.4dp"
+            android:layout_marginBottom="18dp"
+            android:layout_marginLeft="1.8dp"
+            android:textSize="10sp"
+            android:textColor="#9b9b9b"
+            android:text="301"
+            app:layout_constraintStart_toEndOf="@id/iv_like"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+
+
+</android.support.constraint.ConstraintLayout>

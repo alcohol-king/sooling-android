@@ -1,7 +1,9 @@
 package com.sooling.sooling.activity.wiki
 
 import android.content.Intent
+import android.graphics.Typeface
 import android.os.Bundle
+import android.support.v4.content.res.ResourcesCompat
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
 import android.util.Log
@@ -44,24 +46,23 @@ class WikiActivity : AppCompatActivity() {
         wikiAdapter.itemClick = object: WikiAdapter.ItemClick {
             override fun onClick(view: View, position: Int) {
 
-                d("token",""+UserDataManager.getToken())
+//                mCompositeDisposable = CompositeDisposable()
+//
+//                mCompositeDisposable.add(DrinkService.instance.getDrinkList()
+//                        .subscribeOn(Schedulers.computation())
+//                        .observeOn(AndroidSchedulers.mainThread())
+//                        .doOnNext() { res ->
+//                            if (res.code() == HttpsURLConnection.HTTP_OK) {
+//                                toast("아직 작업중입니다...")
+//                                Log.d("@@Drink Response", "" + res.body())
+//
+//                            } else{ }
+//                        }
+//                        .subscribe())
 
-                mCompositeDisposable = CompositeDisposable()
-
-                mCompositeDisposable.add(DrinkService.instance.getDrinkList()
-                        .subscribeOn(Schedulers.computation())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .doOnNext() { res ->
-                            if (res.code() == HttpsURLConnection.HTTP_OK) {
-                                toast("아직 작업중입니다...")
-                                Log.d("@@Drink Response", "" + res.body())
-
-                            } else{ }
-                        }
-                        .subscribe())
-
-//                val intent = Intent(this@WikiActivity, WikiDetailActivity::class.java)
-//                startActivity(intent)
+                val intent = Intent(this@WikiActivity, WikiDetailActivity::class.java)
+                intent.putExtra("drink_type", position+1)
+                startActivity(intent)
 
             }
         }

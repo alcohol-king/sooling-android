@@ -16,5 +16,8 @@ data class Drink(
         @SerializedName("price")
         val price: Int,
         @SerializedName("proof")
-        val proof: Float
+        val proof: Float,
+        @SerializedName("drink_img")
+        val drinkImg: Int
+
 )

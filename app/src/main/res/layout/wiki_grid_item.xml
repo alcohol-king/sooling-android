@@ -4,8 +4,11 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:orientation="vertical"
+        android:background="@drawable/wiki_round_conner"
         android:layout_width="152dp"
-        android:layout_height="221dp">
+        android:layout_height="221dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="16dp">
 
     <FrameLayout
             android:layout_width="match_parent"
@@ -25,7 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="64dp"
             android:gravity="center"
-            android:background="#000000"
+            android:background="@drawable/wiki_text_round_conner"
             android:textColor="#ffffff"
             android:textSize="20sp"
             android:textStyle="bold"
