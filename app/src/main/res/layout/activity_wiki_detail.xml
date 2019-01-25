@@ -3,11 +3,13 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
     <TextView
-            android:id="@+id/wiki_title"
+            android:id="@+id/wiki_detail_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20sp"
@@ -21,14 +23,52 @@
             android:text="술과사전"
     />
 
+    <EditText
+            android:id="@+id/wiki_search_bar"
+            android:layout_width="242dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="22dp"
+            android:layout_marginLeft="20dp"
+            android:paddingLeft="10dp"
+            android:background="@drawable/wiki_round_conner"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/wiki_detail_title"
+    />
+
+    <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginRight="6dp"
+            android:padding="3dp"
+            android:src="@drawable/search_img"
+            app:layout_constraintEnd_toEndOf="@id/wiki_search_bar"
+            app:layout_constraintTop_toTopOf="@id/wiki_search_bar"
+    />
+
+
+    <ImageView
+            android:id="@+id/wiki_index_btn"
+            android:layout_width="73dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="22dp"
+            android:layout_marginLeft="4dp"
+            android:background="@drawable/wiki_round_conner"
+            android:backgroundTint="#000000"
+            app:layout_constraintStart_toEndOf="@id/wiki_search_bar"
+            app:layout_constraintTop_toBottomOf="@id/wiki_detail_title"
+    />
+
+
     <android.support.v7.widget.RecyclerView
             android:id="@+id/wiki_detail_recyclerview"
-            android:layout_width="320dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="56dp"
-            android:layout_marginLeft="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="490dp"
+            android:layout_marginTop="9dp"
+            android:layout_marginBottom="14dp"
+            android:scrollbars="vertical"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/wiki_title"
+            app:layout_constraintTop_toBottomOf="@id/wiki_search_bar"
     />
 
 
