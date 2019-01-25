@@ -21,9 +21,9 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_signup.*
+import org.jetbrains.anko.backgroundResource
 import org.jetbrains.anko.toast
 import javax.net.ssl.HttpsURLConnection
-import kotlin.math.sign
 
 
 class SignUpActivity : AppCompatActivity() {
@@ -50,11 +50,23 @@ class SignUpActivity : AppCompatActivity() {
             toast("전달된 이미지가 없습니다.")
         }
 
+        user_name.setOnClickListener {
+            user_name.hint = "닉네임(최대 5자)"
+            user_name.backgroundResource = R.drawable.signup_round_conner_white
+        }
+
+        user_message.setOnClickListener {
+            user_message.hint = "상태말까지 다 채우면 완료(최대 20자)"
+            user_message.backgroundResource = R.drawable.signup_round_conner_white
+        }
+
         user_name.addTextChangedListener(object : TextWatcher {
 
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+
+                user_name.backgroundResource = R.drawable.signup_round_conner_gray
 
                 var userName = user_name.text.toString()
                 var userMessage = user_message.text.toString()
@@ -74,6 +86,8 @@ class SignUpActivity : AppCompatActivity() {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+
+                user_message.backgroundResource = R.drawable.signup_round_conner_gray
 
                 var userName = user_name.text.toString()
                 var userMessage = user_message.text.toString()
