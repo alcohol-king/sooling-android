@@ -11,6 +11,7 @@ import com.sooling.sooling.R
 import com.sooling.sooling.util.ShareCardWithKakaoTalk
 import kotlinx.android.synthetic.main.activity_setting.*
 import kotlinx.android.synthetic.main.toolbar.*
+import org.jetbrains.anko.alert
 import org.jetbrains.anko.startActivity
 
 
@@ -19,6 +20,7 @@ class SettingActivity : AppCompatActivity(), View.OnClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_setting)
+
         initView()
     }
 
@@ -35,13 +37,30 @@ class SettingActivity : AppCompatActivity(), View.OnClickListener {
         ib_back.setOnClickListener(this)
         btn_profile.setOnClickListener(this)
         btn_card.setOnClickListener(this)
+        btn_recommend.setOnClickListener(this)
     }
 
     override fun onClick(view: View?) {
         when (view?.id) {
-            R.id.ib_back -> finish()
+            R.id.ib_back -> showSaveDialog()
             R.id.btn_profile -> startActivity<SettingProfileActivity>()
             R.id.btn_card -> startActivity<SettingCardActivity>()
+            R.id.btn_recommend -> ShareCardWithKakaoTalk(this).excuteRecommend()
         }
+    }
+
+    override fun onDestroy() {
+        showSaveDialog()
+
+        super.onDestroy()
+    }
+
+    fun showSaveDialog() {
+        alert {
+            title = getString(R.string.setting_save)
+            message = getString(R.string.setting_save_msg)
+            positiveButton(getString(R.string.all_ok), onClicked = {})
+            negativeButton(getString(R.string.all_cancel), onClicked = { finish() })
+        }.show()
     }
 }

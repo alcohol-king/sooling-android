@@ -1,6 +1,7 @@
 package com.sooling.sooling.activity.main
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
@@ -8,14 +9,13 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.PagerSnapHelper
 import android.support.v7.widget.RecyclerView
-import android.util.Log.d
 import android.view.View
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.sooling.sooling.R
 import com.sooling.sooling.`object`.DrinkCard
+import com.sooling.sooling.`object`.User
 import com.sooling.sooling.activity.add_drink.AddHistoryActivity
-import com.sooling.sooling.activity.calendar.CalendarActivity
 import com.sooling.sooling.activity.setting.SettingActivity
 import com.sooling.sooling.activity.wiki.WikiActivity
 import com.sooling.sooling.adapter.CardListAdapter
@@ -24,14 +24,18 @@ import com.sooling.sooling.custom_view.ShareDialog
 import com.sooling.sooling.util.RecyclerItemClickListener
 import com.sooling.sooling.util.UserDataManager
 import kotlinx.android.synthetic.main.activity_main.*
+import org.jetbrains.anko.alert
 import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.startActivityForResult
 import org.jetbrains.anko.toast
 
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     val requestPermission = 0
+    val codeSetting = 1
     var index = 0
     lateinit var adapter: CardListAdapter
+    lateinit var user: User
     var cardList = listOf<DrinkCard>(
             DrinkCard("BEER", "500cc까지는 즐기면서"),
             DrinkCard("SOJU", "3잔까지는 멀쩡하게"),
@@ -47,9 +51,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         askForPermission()
     }
 
-    private fun initView() {
-        val user = UserDataManager.getInstance(this).getUserInfo()
-        d("token", user.token)
+    private fun initInfo() {
+        user = UserDataManager.getInstance(this).getUserInfo()
         Glide.with(applicationContext)
                 .load(user.imgUrl)
                 .apply(RequestOptions().circleCrop())
@@ -57,6 +60,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         tv_main_name.text = user.name
         tv_main_msg.text = user.msg
+    }
+
+    private fun initView() {
+        initInfo()
 
         adapter = CardListAdapter(this, cardList)
         rv_main_card.adapter = adapter
@@ -105,13 +112,23 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     override fun onClick(view: View?) {
         when (view?.id) {
             R.id.btn_main_capacity -> startActivity<AddHistoryActivity>()
-            R.id.btn_main_calendar -> startActivity<CalendarActivity>()
+            R.id.btn_main_calendar -> alert {
+                title = "송구합니다..."
+                message = "캘린더는 아직 개발 중입니다...\n다음 업데이트를 기다려주십쇼."
+                positiveButton("납득", onClicked = {})
+            }.show()
             R.id.btn_main_wiki -> startActivity<WikiActivity>()
-            R.id.btn_main_setting -> startActivity<SettingActivity>()
+            R.id.btn_main_setting -> startActivityForResult<SettingActivity>(codeSetting)
             R.id.btn_main_share -> {
-                ShareDialog(this, cardList[index], "유우미").show()
+                ShareDialog(this, cardList[index], user.name).show()
             }
         }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == codeSetting)
+            initInfo()
     }
 
     // 권한 요청

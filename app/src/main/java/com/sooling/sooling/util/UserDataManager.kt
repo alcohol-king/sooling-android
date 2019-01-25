@@ -29,6 +29,15 @@ object UserDataManager {
         editor.apply()
     }
 
+    fun saveUserInfo(name: String, msg: String, imgUrl: String) {
+        val editor = sharedPreferences.edit()
+        editor.putString(keyName, name)
+        editor.putString(keyImgUrl, imgUrl)
+        editor.putString(keyMsg, msg)
+
+        editor.apply()
+    }
+
     fun saveMemberLabel(labels: ArrayList<String>) {
         val editor = sharedPreferences.edit()
         val hash = HashSet<String>()

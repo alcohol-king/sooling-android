@@ -29,7 +29,8 @@ class ShareDialog(context: Context, val drinkCard: DrinkCard, val name: String)
         val data = GetCardData(context)
         view_card_back.backgroundResource = data.getColor(drinkCard.drinkType)
         tv_card_msg1.text = data.getFirstMsg(drinkCard.drinkType)
-        tv_share_name.setText("By. $name")
+        tv_card_msg2.text = drinkCard.message
+        tv_share_name.text = "By. $name"
 
         ib_share_close.setOnClickListener(this)
         ib_download.setOnClickListener(this)

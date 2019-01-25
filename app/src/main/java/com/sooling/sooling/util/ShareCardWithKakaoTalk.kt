@@ -19,7 +19,10 @@ import java.io.File
 class ShareCardWithKakaoTalk(val context: Context, val imgFile: File) {
     val webUrl = "http://yellowcard-api.herokuapp.com/swagger-ui.html#!/main-controller/mainUsingGET"
     val mobileUrl = "http://yellowcard-api.herokuapp.com/swagger-ui.html#!/main-controller/mainUsingGET"
+    val recommendImg = "https://blogfiles.pstatic.net/MjAxOTAxMjNfMTky/MDAxNTQ4MjM5NzExNDI4.THtF7ciCFmBLgr63t22sSi0FiP9M5VRfYqzFpWOlFJ0g.dZAy6Qf-WGg4big_ULpdMtvTww1sEH6ZitC6e6JQYNEg.JPEG.zion830/splash.jpg"
     val service = KakaoLinkService.getInstance()
+
+    constructor(context: Context) : this(context, File(""))
 
     // 템플릿 생성 후 공유
     fun excute(msg: String, imgUrl: String) {
@@ -46,6 +49,10 @@ class ShareCardWithKakaoTalk(val context: Context, val imgFile: File) {
         } else {
             context.toast(context.getString(R.string.err_img_upload))
         }
+    }
+
+    fun excuteRecommend() {
+        excute("나만의 카드를 만들어서 내 주량을 공유해보세요!", recommendImg)
     }
 
     // 서버에 이미지 업로드

@@ -1,7 +1,6 @@
 package com.sooling.sooling.model
 
 import android.content.Context
-import android.graphics.drawable.Drawable
 import com.sooling.sooling.R
 
 class GetCardData(val context: Context) {
@@ -48,6 +47,9 @@ class GetCardData(val context: Context) {
     fun getDrinkIcon(type: String): Int =
             when (type) {
                 beer -> R.drawable.img_beer
+                soju -> R.drawable.img_soju
+                wine -> R.drawable.img_wine
+                makgeolli -> R.drawable.img_makgeolli
                 else -> R.drawable.img_beer
             }
 

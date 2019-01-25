@@ -57,6 +57,9 @@
     <string name="setting_state_msg">상태 메세지를 입력해주세요.</string>
     <string name="setting_label">라벨 지정</string>
     <string name="setting_label_msg">주량라벨은 옐로카드만의 기준에 맞추어 보여집니다.\n최소 하나의 라벨을 지정해주세요 :)</string>
+    <string name="setting_save">프로필 저장</string>
+    <string name="setting_save_msg">설정한 프로필을 저장하시겠습니까?</string>
+    <string name="setting_save_err1">닉네임을 입력해주세요.</string>
 
     <string name="share_msg">Let&quot;s Share it.</string>
     <string name="share_recommend">옐로카드로 당신의 주량을 공유해보세요!</string>
