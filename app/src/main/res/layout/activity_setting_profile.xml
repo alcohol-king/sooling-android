@@ -25,6 +25,7 @@
                 android:layout_height="120dp" />
 
             <ImageButton
+                android:id="@+id/ib_setting_img"
                 android:layout_width="26dp"
                 android:layout_height="26dp"
                 android:layout_gravity="bottom|right"
@@ -133,7 +134,7 @@
                 android:gravity="left|center_vertical"
                 android:paddingLeft="20dp"
                 android:paddingRight="10dp"
-                android:text="@string/label"
+                android:text="Soju\n0.0"
                 android:textAllCaps="false" />
 
             <Button
@@ -148,7 +149,7 @@
                 android:gravity="left|center_vertical"
                 android:paddingLeft="20dp"
                 android:paddingRight="10dp"
-                android:text="@string/label"
+                android:text="Wine \n0.0"
                 android:textAllCaps="false" />
 
             <Button
@@ -162,7 +163,7 @@
                 android:gravity="left|center_vertical"
                 android:paddingLeft="20dp"
                 android:paddingRight="10dp"
-                android:text="@string/label"
+                android:text="Makgeolli\n0.0"
                 android:textAllCaps="false" />
         </GridLayout>
 

@@ -1,6 +1,7 @@
 package com.sooling.sooling.activity.signup
 
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.text.Editable
@@ -16,6 +17,7 @@ import com.sooling.sooling.`object`.SignIn
 import com.sooling.sooling.`object`.User
 import com.sooling.sooling.activity.main.MainActivity
 import com.sooling.sooling.service.SignInService
+import com.sooling.sooling.util.TransBitmap
 import com.sooling.sooling.util.UserDataManager
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -23,6 +25,7 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_signup.*
 import org.jetbrains.anko.backgroundResource
 import org.jetbrains.anko.toast
+import java.net.URL
 import javax.net.ssl.HttpsURLConnection
 
 
@@ -110,7 +113,7 @@ class SignUpActivity : AppCompatActivity() {
             val userName = user_name.text.toString()
             val userMessage = user_message.text.toString()
 
-            val signIn = SignIn(token, userName, userMessage,"")
+            val signIn = SignIn(token, userName, userMessage, "")
 
             mCompositeDisposable = CompositeDisposable()
 
@@ -121,8 +124,8 @@ class SignUpActivity : AppCompatActivity() {
                         if (res.code() == HttpsURLConnection.HTTP_OK) {
 
                             toast("가입이 완료되었습니다!")
-                            d("@@SignIn Response",""+res.body())
-                            setUserInfo(res.body()!!.token,userName, imageURL, userMessage)
+                            d("@@SignIn Response", "" + res.body())
+                            setUserInfo(res.body()!!.token, userName, imageURL, userMessage)
 
                         } else
                             toast("가입에 실패하였습니다.")
@@ -135,10 +138,12 @@ class SignUpActivity : AppCompatActivity() {
         }
     }
 
-    private fun setUserInfo(token:String, userName:String, imageURL:String, userMessage:String) {
-            UserDataManager.getInstance(this).saveUserInfo(User(
-                    token, userName, imageURL, userMessage
-            ))
+    private fun setUserInfo(token: String, userName: String, imageURL: String, userMessage: String) {
+        val bmp = BitmapFactory.decodeStream(URL(imageURL).openStream())
+
+        UserDataManager.getInstance(this).saveUserInfo(User(
+                token, userName, TransBitmap.bitmapToString(bmp), userMessage
+        ))
 
         val intent = Intent(this@SignUpActivity, MainActivity::class.java)
         startActivity(intent)

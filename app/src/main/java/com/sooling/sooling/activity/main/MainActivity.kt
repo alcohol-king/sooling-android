@@ -22,6 +22,7 @@ import com.sooling.sooling.adapter.CardListAdapter
 import com.sooling.sooling.adapter.IndicatorAdapter
 import com.sooling.sooling.custom_view.ShareDialog
 import com.sooling.sooling.util.RecyclerItemClickListener
+import com.sooling.sooling.util.TransBitmap
 import com.sooling.sooling.util.UserDataManager
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.alert
@@ -54,7 +55,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private fun initInfo() {
         user = UserDataManager.getInstance(this).getUserInfo()
         Glide.with(applicationContext)
-                .load(user.imgUrl)
+                .load(TransBitmap.stringToBitMap(user.imgUrl))
                 .apply(RequestOptions().circleCrop())
                 .into(iv_main_profile)
 

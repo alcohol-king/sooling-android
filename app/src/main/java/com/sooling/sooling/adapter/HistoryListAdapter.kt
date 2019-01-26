@@ -42,7 +42,7 @@ class HistoryListAdapter(val context: Context, var strList: ArrayList<String>)
     fun setPeopleCount(count: Int) {
         strList.forEachIndexed { index, s ->
             val peopleCount = if (count == 0) "혼자서" else "${count}명과"
-            strList[index] = peopleCount + s.substring(s.indexOf("명"), s.length)
+            strList[index] = peopleCount + s.substring(s.indexOf("명과") + 2, s.length)
         }
 
         notifyDataSetChanged()

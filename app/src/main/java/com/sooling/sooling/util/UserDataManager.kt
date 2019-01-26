@@ -2,7 +2,9 @@ package com.sooling.sooling.util
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.google.gson.Gson
 import com.sooling.sooling.`object`.User
+
 
 object UserDataManager {
     private val sharedPrefName = "mannaja_sharedpref"
@@ -29,21 +31,32 @@ object UserDataManager {
         editor.apply()
     }
 
-    fun saveUserInfo(name: String, msg: String, imgUrl: String) {
+    fun saveUserName(name: String) {
         val editor = sharedPreferences.edit()
         editor.putString(keyName, name)
-        editor.putString(keyImgUrl, imgUrl)
+
+        editor.apply()
+    }
+
+    fun saveUserMsg(msg: String) {
+        val editor = sharedPreferences.edit()
         editor.putString(keyMsg, msg)
+
+        editor.apply()
+    }
+
+    fun saveUserImg(img: String) {
+        val editor = sharedPreferences.edit()
+        editor.putString(keyImgUrl, img)
 
         editor.apply()
     }
 
     fun saveMemberLabel(labels: ArrayList<String>) {
         val editor = sharedPreferences.edit()
-        val hash = HashSet<String>()
-        hash.addAll(labels)
 
-        editor.putStringSet(keyLabel, hash)
+        val json = Gson().toJson(labels)
+        editor.putString(keyLabel, json)
         editor.apply()
     }
 
